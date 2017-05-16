@@ -1,0 +1,113 @@
+.aside {
+  position: fixed;
+  width: 45px;
+  transition: width 0.5s ease-in;
+  border-right: 1px solid $light-gray-border;
+  height: calc(100vh - 72px);
+  header {
+    margin-top: 4.5rem;
+  }
+  .aside--notebook {
+    position: relative;
+    color: black;
+    border-bottom: 1px solid $light-gray-border;
+    margin: 1rem 0;
+    opacity: 0;
+    width: 90%;
+    transition: opacity 0.2s ease;
+    &:first-child{
+      border-top: 1px solid $light-gray-border;
+    }
+    a {
+      margin: 1rem 0;
+      font-size: calculateRem(24px);
+      margin-top: calculateRem(20px);
+      margin-bottom: calculateRem(10px);
+      color: black;
+    }
+    span {
+      position: absolute;
+      bottom: 2px;
+      right: 5px;
+      font-size: 1.2307rem;
+    }
+    /* 
+    &:hover {
+      background-color: $brand-medium-green;
+      color: #fff;
+      box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 3px 1px -2px rgba(0, 0, 0, 0.2), 0 1px 5px 0 rgba(0, 0, 0, 0.12);
+    }
+    */
+  }
+  .fa-1-5 {
+    font-size: 1.5rem;
+    margin: 10px;
+    .fa {
+      color: $brand-medium-green;
+    }
+  }
+}
+
+.aside__active {
+  width: 230px;
+  header{
+    margin-top: 1.5rem;
+  }
+  .aside--notebook {
+    opacity: 1;
+    transition: opacity 0.3s ease-in-out;
+  }
+  .fa-1-5 {
+    margin: 0 calculateRem(6px);
+  }
+}
+
+.nav-toggle-pos {
+  position: absolute;
+  top: 20px;
+  left: 6px;
+  width: 35px;
+  height: 25px;
+  transform: rotate(0deg);
+  transition: 0.5s ease-in-out;
+  cursor: pointer;
+  span {
+    display: block;
+    position: absolute;
+    height: 2px;
+    width: 60%;
+    background: $light-gray-border;
+    opacity: 1;
+    transform: rotate(0deg);
+    transition: .25s ease-in-out;
+    &:nth-child(1) {
+      top: 0px;
+    }
+    &:nth-child(2) {
+      top: 7px;
+    }
+    &:nth-child(3) {
+      top: 14px;
+    }
+  }
+}
+
+.toggle-nav_open {
+  top: -6px;
+  left: calculateRem(209px);
+  span {
+    width: 45%;
+    &:nth-child(1) {
+      top: 18px;
+      transform: rotate(135deg);
+    }
+    &:nth-child(2) {
+      opacity: 0;
+      left: -60px;
+    }
+    &:nth-child(3) {
+      top: 18px;
+      transform: rotate(-135deg);
+    }
+  }
+}

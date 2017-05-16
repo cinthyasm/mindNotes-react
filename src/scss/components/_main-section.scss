@@ -1,0 +1,177 @@
+.main--separator,
+.separator {
+  border-bottom: 2px solid $light-gray-border;
+  margin-bottom: 1rem;
+}
+
+.main--title {
+  position: relative;
+  text-align: center;
+}
+
+//Notes 
+.note {
+  background-color: $brand-yellow;
+  height: 160px;
+  width: 100%;
+  padding: 1rem;
+  border: 2px solid $yellow-corner;
+  position: relative;
+  margin-bottom: 1rem;
+  input {
+    width: 100%;
+    background-color: transparent;
+    border: 0;
+    &:focus {
+      outline: 0;
+    }
+  }
+  &:hover {
+    box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 3px 1px -2px rgba(0, 0, 0, 0.2), 0 1px 5px 0 rgba(0, 0, 0, 0.12);
+    .footer {
+      display: block;
+    }
+  }
+  &:before {
+    //box-shadow: 0 1px 1px rgba(0, 0, 0, 0.3), -1px 1px 1px rgba(0, 0, 0, 0.2);
+    background: none repeat scroll 0 0 $yellow-corner;
+    /* Corner color */
+    border-color: #FFFFFF #FFFFFF $yellow-corner $yellow-corner;
+    /* Border Color */
+    border-style: solid;
+    border-width: 0 16px 16px 0;
+    content: "";
+    display: block;
+    position: absolute;
+    right: -2px;
+    top: -2px;
+    width: 0;
+  }
+  textarea {
+    background-color: transparent;
+    height: calc(100% - 45px);
+    width: 100%;
+    resize: none;
+    border: none;
+    overflow: hidden;
+    &:focus {
+      outline: 0;
+    }
+  }
+  .note--title {
+    text-align: center;
+    font-size: 1.5rem;
+  }
+  //Note's Footer
+  .footer {
+    position: absolute;
+    bottom: 0rem;
+    right: 2px;
+    text-align: right;
+    display: none;
+    .footer--icon {
+      background: transparent;
+      border: 0;
+      &:focus {
+        outline: 0;
+      }
+    }
+  }
+  .close {
+    display: none;
+  }
+}
+
+.note-modal {
+  display: none;
+  position: fixed;
+  z-index: 1;
+  padding-top: 100px;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgba(229, 229, 229, .6);
+  .note-modal--content {
+    box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 3px 1px -2px rgba(0, 0, 0, 0.2), 0 1px 5px 0 rgba(0, 0, 0, 0.12);
+    margin: auto;
+    width: 50%;
+    .close {
+      color: #aaaaaa;
+      float: right;
+      font-size: 28px;
+      font-weight: bold;
+      &:hover,
+      &:focus {
+        color: #000;
+        text-decoration: none;
+        cursor: pointer;
+      }
+    }
+  }
+}
+
+.color-picker {
+  position: absolute;
+  display: none;
+  height: 30px;
+  width: 100px;
+  bottom: -30px;
+  right: 2rem;
+  border: 2px solid black;
+  border-radius: 10px;
+  text-align: center;
+}
+
+.row--color-active {
+  display: block;
+}
+
+.blue,
+.green,
+.default {
+  display: inline-block;
+  height: 20px;
+  width: 20px;
+  margin: 0.15rem;
+  border-radius: 50%;
+  border: 1px solid black;
+}
+
+.default {
+  background-color: $brand-yellow;
+  border: 2px solid $yellow-corner;
+}
+
+.blue,
+.blue-note {
+  background-color: $light-blue;
+  border: 2px solid $dark-blue;
+}
+
+.blue-note:before {
+  background: none repeat scroll 0 0 $dark-blue;
+  border-color: #FFFFFF #FFFFFF transparent transparent;
+}
+
+.green,
+.green-note {
+  background-color: $brand-red;
+  border: 2px solid $dark-red;
+}
+
+.green-note:before {
+  background: none repeat scroll 0 0 $dark-red;
+  /* Corner color */
+  border-color: #FFFFFF #FFFFFF $dark-red $dark-red;
+}
+
+.row-notes {
+  margin-left: 45px;
+  transition: margin-left 0.5s ease-in;
+}
+
+.row-notes__active {
+  margin-left: 230px;
+}

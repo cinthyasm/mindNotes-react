@@ -1,4 +1,13 @@
-*{
-    color:red;
-    font-size: 15px;
-}
+// helpers load first
+@import "helpers/variables";
+@import "helpers/functions";
+// load vendor libs, but just what you need
+//@import "vendor/bootstrap-custom";
+//@import "/node_modules/font-awesome/scss/font-awesome.scss";
+// load components
+@import "components/buttons";
+@import "components/header";
+@import "components/aside";
+@import "components/main-section";
+// load components
+@import "pages/home";

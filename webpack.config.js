@@ -4,14 +4,14 @@ var StyleLintPlugin = require('stylelint-webpack-plugin');
 
 module.exports = {
   context: path.join(__dirname, '/src'),
-  entry: './app.jsx',
+  entry: ['./app.jsx'],
   devtool: 'sourcemap',
   output: {
     filename: 'bundle.js',
     path: path.join(__dirname, '/dist'),
   },
   resolve: {
-    extensions: ['.js','jsx', '.json']
+    extensions: ['.js','jsx', '.json'],
   },
   stats: {
     colors: true,
@@ -35,7 +35,7 @@ module.exports = {
         test: [/\.scss$/, /\.css$/],
         use: [
           'style-loader',
-          'css-loader?importLoaders=2',
+          'css-loader',
           'sass-loader',
         ],
       }
