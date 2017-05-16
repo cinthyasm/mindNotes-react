@@ -10,8 +10,11 @@ module.exports = {
     filename: 'bundle.js',
     path: path.join(__dirname, '/dist'),
   },
+   devServer: {
+    historyApiFallback: true
+  },
   resolve: {
-    extensions: ['.js','jsx', '.json'],
+    extensions: ['.js','.jsx', '.json'],
   },
   stats: {
     colors: true,
