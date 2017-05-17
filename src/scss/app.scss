@@ -1,7 +1,10 @@
 // helpers load first
 @import "helpers/variables";
 @import "helpers/functions";
-// load vendor libs, but just what you need
+//https://www.laurivan.com/load-fontawesome-fonts-with-webpack-2/
+$fa-font-path: "~font-awesome/fonts";
+@import "~font-awesome/scss/font-awesome.scss";
+
 //@import "vendor/bootstrap-custom";
 //@import "/node_modules/font-awesome/scss/font-awesome.scss";
 // load components
