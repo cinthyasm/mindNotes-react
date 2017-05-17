@@ -1,5 +1,6 @@
 import React from 'react';
 import Aside from './../Aside/Aside';
+import Note from './../Note/Note';
 
 const MainContent = React.createClass({
   render() {
@@ -18,7 +19,7 @@ const MainContent = React.createClass({
             </div>
             <div className="row">
               <div className="col-xs-12 col-sm-6 col-md-3">
-                
+                <Note />
               </div>
             </div>
           </div>
