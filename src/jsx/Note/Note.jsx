@@ -1,6 +1,6 @@
 import React from 'react';
 
-const Note = React.createClass({
+class Note extends React.Component{
   render(){
     return(
       <div className='note-block'>
@@ -25,6 +25,6 @@ const Note = React.createClass({
       </div>
     )
   }
-});
+}
 
 export default Note;

@@ -2,7 +2,7 @@ import React from 'react';
 import HeaderBrand from './HeaderBrand';
 import HeaderSearch from './HeaderSearch'
 
-const Header = React.createClass({
+class Header extends React.Component{
   render() {
     return ( 
       <header className='container-fluid main-header'>
@@ -20,6 +20,6 @@ const Header = React.createClass({
        </header>
     )
   }
-});
+}
 
 export default Header;

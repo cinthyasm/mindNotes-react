@@ -1,8 +1,7 @@
 import React from 'react';
 
-class AsideMenu extends React.Component{
+const AsideMenu = () =>{
 
-  render() {
     return(
       <header className='row'>
           <div className='col-xs-1 col-xs-offset-1 fa-1-5'><i className='fa fa-plus' aria-hidden='true'></i></div>
@@ -12,7 +11,6 @@ class AsideMenu extends React.Component{
           <div className='col-xs-1 fa-1-5'><i className='fa fa-star-o' aria-hidden='true'></i></div>
       </header>
     )
-  }
 }
 
 export default AsideMenu;
