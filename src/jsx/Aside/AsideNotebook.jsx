@@ -4,7 +4,7 @@ const AsideNotebook = React.createClass({
   render () {
     return (
       <div className="aside--notebook text-center">
-        <a> Activities </a>
+        <a> Activities <i className="fa fa-angle-right" aria-hidden="true"></i></a>
       </div>
     )
   }

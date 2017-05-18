@@ -9,6 +9,8 @@ const Aside = React.createClass({
         <AsideMenu />
         <div>
           <AsideNotebook/>
+          <AsideNotebook/>
+          <AsideNotebook/>
         </div>
       </aside>
     )

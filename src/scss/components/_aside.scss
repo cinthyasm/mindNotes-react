@@ -15,15 +15,20 @@
     opacity: 0;
     width: 90%;
     transition: opacity 0.2s ease;
-    &:first-child{
-      border-top: 1px solid $light-gray-border;
-    }
+    padding: calculateRem(10px);
     a {
-      margin: 1rem 0;
       font-size: calculateRem(24px);
-      margin-top: calculateRem(20px);
-      margin-bottom: calculateRem(10px);
       color: black;
+      font-family: $title-font;
+      text-decoration: none;
+      cursor: pointer;
+       i {
+        position: absolute;
+        bottom: calculateRem(14px);
+        right: calculateRem(5px);
+        font-size: calculateRem(25px);
+        color: #CCCCCC;
+      }
     }
     span {
       position: absolute;
