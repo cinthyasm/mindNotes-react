@@ -2,7 +2,7 @@ import React from 'react';
 import Aside from './../Aside/Aside';
 import Note from './../Note/Note';
 
-class MainContent extends React.Component{
+class Content extends React.Component{
   render() {
     return(
       <div className='container-fluid'>
@@ -29,4 +29,4 @@ class MainContent extends React.Component{
   }
 }
 
-export default MainContent;
+export default Content;
