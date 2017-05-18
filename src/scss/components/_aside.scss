@@ -1,19 +1,18 @@
 .aside {
   position: fixed;
   width: 45px;
-  transition: width 0.5s ease-in;
-  border-right: 1px solid $light-gray-border;
   height: calc(100vh - 72px);
-  header {
-    margin-top: 4.5rem;
-  }
+  background-color: #fff;
+  border-right: 1px solid $light-gray-border;
+  z-index:2;
+  transition: width 0.5s ease-in;
   .aside--notebook {
     position: relative;
     color: black;
     border-bottom: 1px solid $light-gray-border;
+    background-color: #fff;
     margin: 1rem 0;
     opacity: 0;
-    width: 90%;
     transition: opacity 0.2s ease;
     padding: calculateRem(10px);
     a {
@@ -69,8 +68,8 @@
 
 .nav-toggle-pos {
   position: absolute;
-  top: 20px;
-  left: 6px;
+  top: 40%;
+  left: -3px;
   width: 35px;
   height: 25px;
   transform: rotate(0deg);
@@ -93,26 +92,6 @@
     }
     &:nth-child(3) {
       top: 14px;
-    }
-  }
-}
-
-.toggle-nav_open {
-  top: -6px;
-  left: calculateRem(209px);
-  span {
-    width: 45%;
-    &:nth-child(1) {
-      top: 18px;
-      transform: rotate(135deg);
-    }
-    &:nth-child(2) {
-      opacity: 0;
-      left: -60px;
-    }
-    &:nth-child(3) {
-      top: 18px;
-      transform: rotate(-135deg);
     }
   }
 }

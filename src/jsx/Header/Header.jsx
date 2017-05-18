@@ -5,12 +5,17 @@ import HeaderSearch from './HeaderSearch'
 const Header = React.createClass({
   render() {
     return ( 
-      <header className='main-header'>
+      <header className='container-fluid main-header'>
         <nav className='navbar navbar-default'>
-            <div className='container-fluid'>
-                <HeaderBrand/>
-                <HeaderSearch/>
-            </div>
+          <div id='navbar-toggle' className='nav-toggle-pos'>
+            <span></span>
+            <span></span>
+            <span></span>
+          </div>
+          <div className='container-fluid'>
+            <HeaderBrand/>
+            <HeaderSearch/>
+          </div>
           </nav>
        </header>
     )
