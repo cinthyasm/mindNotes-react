@@ -2,8 +2,9 @@ import React from 'react';
 import AsideMenu from './AsideMenu';
 import AsideNotebook from './AsideNotebook';
 
-const Aside = React.createClass({
-  render() {
+class Aside extends React.Component{
+
+   render() {
     return(
       <aside> 
         <AsideMenu />
@@ -15,6 +16,6 @@ const Aside = React.createClass({
       </aside>
     )
   }
-});
+}
 
 export default Aside;

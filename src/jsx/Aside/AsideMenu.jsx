@@ -1,6 +1,7 @@
 import React from 'react';
 
-const AsideMenu = React.createClass({
+class AsideMenu extends React.Component{
+
   render() {
     return(
       <header className='row'>
@@ -12,7 +13,7 @@ const AsideMenu = React.createClass({
       </header>
     )
   }
-});
+}
 
 export default AsideMenu;
 
