@@ -5,7 +5,7 @@ import AppContainer from './jsx/AppContainer/AppContainer'
 import '../node_modules/bootstrap-sass/assets/stylesheets/_bootstrap.scss';
 import './scss/app.scss';
 
-const App = React.createClass({
+class App extends React.Component{
   render() {
     return ( 
       <div>
@@ -13,6 +13,6 @@ const App = React.createClass({
       </div>
     )
   }
-});
+}
 
 render( < App / > , document.getElementById('app'));

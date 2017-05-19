@@ -6,11 +6,11 @@ class Content extends React.Component{
   render() {
     return(
       <div className='container-fluid'>
-        <div className='aside'>
-          <Aside className='aside' />
+        <div className={this.props.isActive ? 'aside aside__active': 'aside'}>
+          <Aside />
         </div>
 
-        <div className='row row-notes'>
+        <div className={this.props.isActive ? 'row row-notes row-notes__active': 'row row-notes'}>
           <div className="col-md-12">
             <div className="row main--separator">
               <div className="col-xs-12 main--title">
@@ -18,9 +18,13 @@ class Content extends React.Component{
               </div>
             </div>
             <div className="row">
-              <div className="col-xs-12 col-sm-6 col-md-3">
-                <Note searchTerm={this.props.searchTerm} />
-              </div>
+              {this.props.notes.filter((note) => 
+                `${note.title} ${note.description}`.toUpperCase().indexOf(this.props.searchTerm.toUpperCase())>= 0)
+              .map((note) => {
+                return ( 
+                  <Note key={note.id} {...note} />
+                )
+              })}
             </div>
           </div>
         </div>

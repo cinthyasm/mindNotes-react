@@ -7,7 +7,7 @@ class Header extends React.Component{
     return ( 
       <header className='container-fluid main-header'>
         <nav className='navbar navbar-default'>
-          <div id='navbar-toggle' className='nav-toggle-pos'>
+          <div id='navbar-toggle' onClick={this.props.onClick} className='nav-toggle-pos'>
             <span></span>
             <span></span>
             <span></span>
