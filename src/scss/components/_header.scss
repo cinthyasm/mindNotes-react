@@ -1,4 +1,7 @@
 .main-header {
+  position: fixed;
+  width: 100%;
+  z-index: 3;
   background-color: $brand-green;
   .navbar-default {
     background-color: transparent;

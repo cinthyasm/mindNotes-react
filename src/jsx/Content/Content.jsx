@@ -19,7 +19,7 @@ class Content extends React.Component{
             </div>
             <div className="row">
               <div className="col-xs-12 col-sm-6 col-md-3">
-                <Note />
+                <Note searchTerm={this.props.searchTerm} />
               </div>
             </div>
           </div>

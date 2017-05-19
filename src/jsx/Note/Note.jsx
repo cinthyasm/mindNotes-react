@@ -6,7 +6,7 @@ class Note extends React.Component{
       <div className='note-block'>
         <div className='note note-modal--content'>
           <span className='close'>X</span>
-          <div className='note--title'>Title </div>
+          <div className='note--title'>{this.props.searchTerm} </div>
           <textarea></textarea>
           <div className='footer'>
             <button className='footer--icon btn-color'>
