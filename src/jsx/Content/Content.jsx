@@ -22,7 +22,7 @@ class Content extends React.Component{
                 `${note.title} ${note.description}`.toUpperCase().indexOf(this.props.searchTerm.toUpperCase())>= 0)
               .map((note) => {
                 return ( 
-                  <Note key={note.id} {...note} />
+                  <Note key={note.id} {...note} childToParent={this.props.childToParent} />
                 )
               })}
             </div>

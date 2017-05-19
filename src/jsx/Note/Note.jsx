@@ -1,6 +1,10 @@
 import React from 'react';
 
 class Note extends React.Component{
+  someFn() {
+       this.props.childToParent(this.props.id)
+    }
+  
   render(){
     const {title,description} = this.props;
     return(
@@ -14,7 +18,7 @@ class Note extends React.Component{
               <button className='footer--icon btn-color'>
                 <i className='fa fa-paint-brush' aria-hidden='true'></i>
               </button>
-              <button className='footer--icon btn-delete'>
+              <button onClick={this.someFn.bind(this)} className='footer--icon btn-delete'>
                 <i className='fa fa-trash-o' aria-hidden='true'></i>
               </button>
             </div>

@@ -17,6 +17,7 @@ class AppContainer extends React.Component {
     this.handlerStateSearch = this.handlerStateSearch.bind(this);
     this.handlerUiClick = this.handlerUiClick.bind(this);
     this.addNote = this.addNote.bind(this);
+    this.childToParent = this.childToParent.bind(this);
   }
    
   handlerStateSearch(event){
@@ -35,11 +36,12 @@ class AppContainer extends React.Component {
     this.setState({notes: addNotes})
   }
 
-  deleteNote(event){
-    var addNotes = this.state.notes.slice();
-    addNotes.push({'id':idNote, 'title':'El che', 'description':'prueba'});
-    this.setState({notes: addNotes})
-  }
+  childToParent(dataFromChild) {
+    console.log(dataFromChild)
+    var deleteNotes = this.state.notes.slice()
+    deleteNotes = deleteNotes.filter(function( note ) { return note.id !== dataFromChild})
+    this.setState({notes: deleteNotes})
+ }
 
   render(){
    return(
@@ -54,6 +56,7 @@ class AppContainer extends React.Component {
           notes={this.state.notes} 
           isActive = {this.state.activeHeader}
           onClick={this.addNote}
+          childToParent={this.childToParent}
         />
       </div>
    ) 
