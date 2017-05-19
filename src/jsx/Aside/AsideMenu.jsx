@@ -1,16 +1,19 @@
 import React from 'react';
 
-const AsideMenu = () =>{
+class AsideMenu extends React.Component{
 
-    return(
+    render(){
+
+    return( 
       <header className='row'>
-          <div className='col-xs-1 col-xs-offset-1 fa-1-5'><i className='fa fa-plus' aria-hidden='true'></i></div>
+          <div onClick={this.props.onClick} className='col-xs-1 col-xs-offset-1 fa-1-5'><i className='fa fa-plus' aria-hidden='true'></i></div>
           <div className='col-xs-1 fa-1-5'><i className='fa fa-sticky-note' aria-hidden='true'></i></div>
           <div className='col-xs-1 fa-1-5'><i className='fa fa-book' aria-hidden='true'></i></div>
           <div className='col-xs-1 fa-1-5'><i className='fa fa-bookmark-o' aria-hidden='true'></i></div>
           <div className='col-xs-1 fa-1-5'><i className='fa fa-star-o' aria-hidden='true'></i></div>
       </header>
     )
+}
 }
 
 export default AsideMenu;

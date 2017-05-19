@@ -7,7 +7,7 @@ class Aside extends React.Component{
    render() {
     return(
       <aside> 
-        <AsideMenu />
+        <AsideMenu onClick={this.props.onClick}/>
         <div>
           <AsideNotebook/>
           <AsideNotebook/>
