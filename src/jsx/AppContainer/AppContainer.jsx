@@ -9,14 +9,8 @@ class AppContainer extends React.Component {
     super(props);
     this.state = {
       searchTerm: '',
-<<<<<<< HEAD
-      notes : [ {'id': 1, 'title': 'asdasdasd', 'description': 'Hellow'}, 
-            {'id': 2, 'title': 'Wasap',     'description': 'World'}, 
-            {'id': 3, 'title': 'Yolololo',  'description': 'Loremp ipmsum'}],
-=======
       notes : [],
       notebooks: [],
->>>>>>> Json-server (notes and notebooks) added, router added but failing
       activeHeader : false,
       activeNote: false
     }
