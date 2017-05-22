@@ -7,7 +7,7 @@ class Content extends React.Component{
     return(
       <div className='container-fluid'>
         <div className={this.props.isActive ? 'aside aside__active': 'aside'}>
-          <Aside onClick={this.props.onClick}/>
+          <Aside onClick={this.props.onClick} notebooks={this.props.notebooks}/>
         </div>
 
         <div className={this.props.isActive ? 'row row-notes row-notes__active': 'row row-notes'}>

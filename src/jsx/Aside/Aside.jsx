@@ -9,9 +9,11 @@ class Aside extends React.Component{
       <aside> 
         <AsideMenu onClick={this.props.onClick}/>
         <div>
-          <AsideNotebook/>
-          <AsideNotebook/>
-          <AsideNotebook/>
+          {this.props.notebooks.map((noteB) => {
+            return ( 
+              <AsideNotebook key={noteB.id} {...noteB}/>
+            )
+          })}
         </div>
       </aside>
     )

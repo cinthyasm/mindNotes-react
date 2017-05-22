@@ -1,6 +1,7 @@
 import React from 'react';
 import Header from './../Header/Header'
 import Content from './../Content/Content'
+import axios from 'axios'
 
 class AppContainer extends React.Component {
 
@@ -8,9 +9,14 @@ class AppContainer extends React.Component {
     super(props);
     this.state = {
       searchTerm: '',
+<<<<<<< HEAD
       notes : [ {'id': 1, 'title': 'asdasdasd', 'description': 'Hellow'}, 
             {'id': 2, 'title': 'Wasap',     'description': 'World'}, 
             {'id': 3, 'title': 'Yolololo',  'description': 'Loremp ipmsum'}],
+=======
+      notes : [],
+      notebooks: [],
+>>>>>>> Json-server (notes and notebooks) added, router added but failing
       activeHeader : false,
       activeNote: false
     }
@@ -21,6 +27,20 @@ class AppContainer extends React.Component {
     this.deleteNote = this.deleteNote.bind(this);
     this.openNote = this.openNote.bind(this);
     this.closeNote = this.closeNote.bind(this);
+  }
+
+    componentDidMount () {
+    axios.get(`http://localhost:3000/notes`)
+      .then((response) => {
+        this.setState({notes: response.data})
+      })
+      .catch((error) => console.error('axios error', error))
+
+    axios.get(`http://localhost:3000/notebooks`)
+      .then((response) => {
+        this.setState({notebooks: response.data})
+      })
+    .catch((error) => console.error('axios error', error))
   }
    
   handlerStateSearch(event){
@@ -69,6 +89,7 @@ class AppContainer extends React.Component {
         <Content 
           searchTerm={this.state.searchTerm} 
           notes={this.state.notes} 
+          notebooks={this.state.notebooks}
           isActive = {this.state.activeHeader}
           onClick={this.addNote}
           deleteNote={this.deleteNote}
