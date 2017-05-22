@@ -12,10 +12,8 @@ class App extends React.Component{
     return ( 
       <BrowserRouter>
         <div>
-          <Switch>
-            <Route pattern ='/' component={AppContainer}/>
-            <Route pattern ='/about' component={About}/>
-          </Switch>
+          <Route exact path ='/' component={AppContainer}/>
+          <Route path ='/about' component={About}/>
         </div>
       </BrowserRouter>
     )

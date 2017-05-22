@@ -23,20 +23,27 @@ class AppContainer extends React.Component {
     this.closeNote = this.closeNote.bind(this);
   }
 
-    componentDidMount () {
-    axios.get(`http://localhost:3000/notes`)
+  componentDidMount () {
+    this.getDataNotes()
+    this.getDataNotebooks()
+  }
+  
+  getDataNotes(){
+   axios.get(`http://localhost:3000/notes`)
       .then((response) => {
         this.setState({notes: response.data})
       })
       .catch((error) => console.error('axios error', error))
-
-    axios.get(`http://localhost:3000/notebooks`)
-      .then((response) => {
-        this.setState({notebooks: response.data})
-      })
-    .catch((error) => console.error('axios error', error))
   }
-   
+
+  getDataNotebooks(){
+  axios.get(`http://localhost:3000/notebooks`)
+        .then((response) => {
+          this.setState({notebooks: response.data})
+        })
+      .catch((error) => console.error('axios error', error))
+  }
+
   handlerStateSearch(event){
     this.setState({searchTerm: event.target.value})
   }
