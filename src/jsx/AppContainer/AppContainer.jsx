@@ -11,13 +11,15 @@ class AppContainer extends React.Component {
       notes : [ {'id': 1, 'title': 'asdasdasd', 'description': 'Hellow'}, 
             {'id': 2, 'title': 'Wasap',     'description': 'World'}, 
             {'id': 3, 'title': 'Yolololo',  'description': 'Loremp ipmsum'}],
-      activeHeader : false
+      activeHeader : false,
+      activeNote: false
     }
 
     this.handlerStateSearch = this.handlerStateSearch.bind(this);
     this.handlerUiClick = this.handlerUiClick.bind(this);
     this.addNote = this.addNote.bind(this);
-    this.childToParent = this.childToParent.bind(this);
+    this.deleteNote = this.deleteNote.bind(this);
+    this.openNote = this.openNote.bind(this);
   }
    
   handlerStateSearch(event){
@@ -26,21 +28,23 @@ class AppContainer extends React.Component {
 
   handlerUiClick (event){
     this.setState({activeHeader: !this.state.activeHeader})
-    console.log(this.state.activeHeader)
   }
 
   addNote(event){
-    var addNotes = this.state.notes.slice();
-    var idNote = (this.state.notes[addNotes.length-1]['id'])+1 ;
+    let addNotes = this.state.notes.slice();
+    let idNote = (this.state.notes[addNotes.length-1]['id'])+1 ;
     addNotes.push({'id':idNote, 'title':'El che', 'description':'prueba'});
     this.setState({notes: addNotes})
   }
 
-  childToParent(dataFromChild) {
-    console.log(dataFromChild)
-    var deleteNotes = this.state.notes.slice()
-    deleteNotes = deleteNotes.filter(function( note ) { return note.id !== dataFromChild})
-    this.setState({notes: deleteNotes})
+  deleteNote(idNote,event) {
+    let arrayNotes = this.state.notes.slice()
+    arrayNotes = arrayNotes.filter(function( note ) { return note.id !== idNote})
+    this.setState({notes: arrayNotes})
+ }
+
+ openNote(event){
+   event.currentTarget.className = 'note-block note-modal--active';
  }
 
   render(){
@@ -56,7 +60,9 @@ class AppContainer extends React.Component {
           notes={this.state.notes} 
           isActive = {this.state.activeHeader}
           onClick={this.addNote}
-          childToParent={this.childToParent}
+          deleteNote={this.deleteNote}
+          openNote={this.openNote}
+          isActiveNote = {this.state.activeNote}
         />
       </div>
    ) 
