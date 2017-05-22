@@ -1,37 +1,44 @@
 {
-  "notes":[
+  "notes": [
     {
-      "id":0,
-      "title": "Math Formulas",
-      "description": "a2+b2=c2, x2=0",
-      "notebook": 1
+      "title": "Titulo",
+      "description": "Hola amiguisASasaSAs",
+      "id": 0
     },
     {
-      "id":1,
-      "title": "Trip reminder",
-      "description": "8am: San Jose, 4pm San Carlos",
-      "notebook": 2
+      "title": "caparicha",
+      "description": "8am: San Jose, 4pm San CsadasdsasS",
+      "id": 1
     },
     {
-      "id":2,
-      "title": "Trip reminder",
-      "description": "8am: San Jose, 4pm San Carlos",
-      "notebook": 3
+      "title": "  ",
+      "description": "h",
+      "id": 2
     },
     {
       "id": 3,
       "title": "Work schedule",
       "description": "8:00am:breakfast, 9:00: fruits",
       "notebook": 1
+    },
+    {
+      "id": 4,
+      "title": "Math Formulas",
+      "description": "a2+b2=c2, x2=0"
+    },
+    {
+      "id": 5,
+      "title": "Math Formulas",
+      "description": "a2+b2=c2, x2=0"
     }
   ],
-  "notebooks":[
+  "notebooks": [
     {
-      "id":1,
+      "id": 1,
       "name": "Trips"
     },
     {
-      "id":2,
+      "id": 2,
       "name": "School"
     },
     {

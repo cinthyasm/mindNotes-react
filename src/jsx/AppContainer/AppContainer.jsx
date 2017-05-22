@@ -68,8 +68,12 @@ class AppContainer extends React.Component {
    event.currentTarget.className = 'note-block note-modal--active'
  }
 
- closeNote(){
-  this.setState({activeNote: !this.state.activeNote})
+closeNote(id,title,description){
+    this.setState({activeNote: !this.state.activeNote})
+    axios.put('http://localhost:3000/notes/'+id, {title: title, description: description })
+    .then(function(response){
+      console.log('saved successfully')
+    });
  }
 
   render(){
