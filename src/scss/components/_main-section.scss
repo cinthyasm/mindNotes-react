@@ -15,7 +15,7 @@
   height: 160px;
   width: 100%;
   padding: 1rem;
-  border: 2px solid $yellow-corner;
+  //border: 2px solid $yellow-corner;
   position: relative;
   margin-bottom: 1rem;
   input {
@@ -28,7 +28,7 @@
   }
   &:hover {
     box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 3px 1px -2px rgba(0, 0, 0, 0.2), 0 1px 5px 0 rgba(0, 0, 0, 0.12);
-    .footer .footer--hover {
+    .footer{
       display: block;
     }
   }
@@ -61,16 +61,23 @@
   .note--title {
     text-align: center;
     font-size: 1.5rem;
+    &:focus{
+      outline: 0;
+    }
   }
-  //Note's Footer
+  .note--description{
+    min-height: calculateRem(60px);
+    margin-bottom: calculateRem(20px);
+    &:focus{
+      outline: 0;
+    }
+  }
   .footer {
     position: absolute;
     bottom: calculateRem(5px);
     right: calculateRem(5px);
     text-align: right;
-    .footer--hover{
-      display: none;
-    }
+    display: none;
     .footer--icon {
       background: transparent;
       border: 0;
@@ -89,19 +96,26 @@
 }
 
 .note-modal--active{
-  position: fixed;
-  z-index: 2;
-  padding-top: 100px;
+  background-color: rgba(229, 229, 229, .6);
+  height: 100%;
   left: 0;
+  overflow: auto;
+  padding-top: 100px;
+  position: fixed;
   top: 0;
   width: 100%;
-  height: 100%;
-  overflow: auto;
-  background-color: rgba(229, 229, 229, .6);
+  z-index: 5;
+   &:hover {
+    .footer .footer--hover {
+      display: flex;
+    }
+  }
   .note-modal--content {
+    color: $font-color-modal;
     box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 3px 1px -2px rgba(0, 0, 0, 0.2), 0 1px 5px 0 rgba(0, 0, 0, 0.12);
     margin: auto;
-    width: 50%;
+    width: 45%;
+    height: auto;
     .close {
       color: #aaaaaa;
       float: right;
@@ -116,20 +130,30 @@
     }
   }
   .footer {
-    position: relative;
-    .footer--hover{
-      display: block;
-      display: flex;
-      justify-content: flex-start;
-      pointer-events: none; 
+    font-size: calculateRem(16px);
+    display: block;
+    width: 100%;
+    button{
+      position: absolute;
+    }
+    .btn-delete{
+        left: calculateRem(55px);
+        bottom: calculateRem(5px);
+    }
+    .btn-color{
+      left: calculateRem(20px);
+      bottom: calculateRem(5px);
     }
     .footer--btn-save{
-      display: block;
-      position: absolute;
-      right: calculateRem(2px);
-      bottom: calculateRem(2px);
       background-color: transparent;
       border: 0;
+      bottom: 0;
+      color: $font-color-modal;
+      display: block;
+      font-weight: bold;
+      font-size: calculateRem(16px);
+      position: absolute;
+      right: calculateRem(2px);
     }
   }
 }
@@ -202,5 +226,13 @@
 @media  screen and (max-width: 530px){
   .row-notes__active {
     margin-left: 0;
+  }
+}
+
+@media  screen and (max-width: $small){
+  .note-modal--active{
+    .note-modal--content{
+      width: 80%;
+    }
   }
 }

@@ -20,6 +20,7 @@ class AppContainer extends React.Component {
     this.addNote = this.addNote.bind(this);
     this.deleteNote = this.deleteNote.bind(this);
     this.openNote = this.openNote.bind(this);
+    this.closeNote = this.closeNote.bind(this);
   }
    
   handlerStateSearch(event){
@@ -32,7 +33,13 @@ class AppContainer extends React.Component {
 
   addNote(event){
     let addNotes = this.state.notes.slice();
-    let idNote = (this.state.notes[addNotes.length-1]['id'])+1 ;
+    let idNote;
+    if(addNotes.length > 0){
+       idNote = (this.state.notes[addNotes.length-1]['id'])+1 ;
+    }else{
+      idNote = 1;
+    }
+    
     addNotes.push({'id':idNote, 'title':'El che', 'description':'prueba'});
     this.setState({notes: addNotes})
   }
@@ -44,7 +51,11 @@ class AppContainer extends React.Component {
  }
 
  openNote(event){
-   event.currentTarget.className = 'note-block note-modal--active';
+   event.currentTarget.className = 'note-block note-modal--active'
+ }
+
+ closeNote(){
+  this.setState({activeNote: !this.state.activeNote})
  }
 
   render(){
@@ -62,7 +73,8 @@ class AppContainer extends React.Component {
           onClick={this.addNote}
           deleteNote={this.deleteNote}
           openNote={this.openNote}
-          isActiveNote = {this.state.activeNote}
+          isActiveNote={this.state.activeNote}
+          closeNote={this.closeNote}
         />
       </div>
    ) 
