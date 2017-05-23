@@ -16,7 +16,7 @@ class Note extends React.Component{
         <div className={this.props.isActiveNote ? null : 'note-block'} onClick={this.props.openNote}>
           <div className='note note-modal--content'>
             <span className='close'>X</span>
-            <input type='text' className='note--title' ref='title' value={title} />
+            <textarea className='note--title' maxLength='15' ref='title'>{title}</textarea>
             <textarea className='note--description' ref='description'>{description}</textarea>
             <div className='footer'>
               <button className='footer--icon btn-color'>

@@ -11,6 +11,7 @@ class AppContainer extends React.Component {
       searchTerm: '',
       notes : [],
       notebooks: [],
+      newTitle: '',
       activeHeader : false,
       activeNote: false
     }
@@ -78,6 +79,7 @@ class AppContainer extends React.Component {
 closeNote(id,title,description){
     this.setState({activeNote: !this.state.activeNote})
     axios.put('http://localhost:3000/notes/'+id, {title: title, description: description })
+    this.getDataNotes()
     .then(function(response){
       console.log('saved successfully')
     });
@@ -95,11 +97,12 @@ closeNote(id,title,description){
           searchTerm={this.state.searchTerm} 
           notes={this.state.notes} 
           notebooks={this.state.notebooks}
+          isActiveNote={this.state.activeNote}
           isActive = {this.state.activeHeader}
+          newTitle = {this.state.newTitle}
           onClick={this.addNote}
           deleteNote={this.deleteNote}
           openNote={this.openNote}
-          isActiveNote={this.state.activeNote}
           closeNote={this.closeNote}
         />
       </div>
