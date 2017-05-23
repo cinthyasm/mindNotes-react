@@ -12,7 +12,7 @@
 //Notes 
 .note {
   background-color: $brand-yellow;
-  height: 160px;
+  height: 175px;
   width: 100%;
   padding: 1rem;
   //border: 2px solid $yellow-corner;
@@ -59,6 +59,7 @@
     }
   }
   .note--title {
+    height: 40px;
     text-align: center;
     font-size: 1.5rem;
     &:focus{
@@ -74,7 +75,7 @@
   }
   .footer {
     position: absolute;
-    bottom: calculateRem(5px);
+    bottom: 0;
     right: calculateRem(5px);
     text-align: right;
     display: none;

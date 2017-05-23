@@ -22,6 +22,8 @@ class AppContainer extends React.Component {
     this.deleteNote = this.deleteNote.bind(this);
     this.openNote = this.openNote.bind(this);
     this.closeNote = this.closeNote.bind(this);
+    this.getDataNotes = this.getDataNotes.bind(this);
+    this.getDataNotebooks = this.getDataNotebooks.bind(this);
   }
 
   componentDidMount () {
@@ -31,18 +33,18 @@ class AppContainer extends React.Component {
   
   getDataNotes(){
    axios.get(`http://localhost:3000/notes`)
-      .then((response) => {
-        this.setState({notes: response.data})
-      })
-      .catch((error) => console.error('axios error', error))
+  .then((response) => {
+    this.setState({notes: response.data})
+  })
+  .catch((error) => console.error('axios error', error))
   }
 
   getDataNotebooks(){
   axios.get(`http://localhost:3000/notebooks`)
-        .then((response) => {
-          this.setState({notebooks: response.data})
-        })
-      .catch((error) => console.error('axios error', error))
+  .then((response) => {
+    this.setState({notebooks: response.data})
+  })
+  .catch((error) => console.error('axios error', error))
   }
 
   handlerStateSearch(event){
@@ -54,22 +56,18 @@ class AppContainer extends React.Component {
   }
 
   addNote(event){
-    let addNotes = this.state.notes.slice();
-    let idNote;
-    if(addNotes.length > 0){
-       idNote = (this.state.notes[addNotes.length-1]['id'])+1 ;
-    }else{
-      idNote = 1;
-    }
-    
-    addNotes.push({'id':idNote, 'title':'El che', 'description':'prueba'});
-    this.setState({notes: addNotes})
+  axios.post('http://localhost:3000/notes/', {title: "Hellow", description: "Test1" })
+  .then(function(response){      
+     this.getDataNotes();
+    }.bind(this));
   }
 
   deleteNote(idNote,event) {
-    let arrayNotes = this.state.notes.slice()
-    arrayNotes = arrayNotes.filter(function( note ) { return note.id !== idNote})
-    this.setState({notes: arrayNotes})
+    event.stopPropagation()
+    axios.delete('http://localhost:3000/notes/'+idNote, {title: "Hellow", description: "Test1" })
+    .then(function(response){      
+      this.getDataNotes();
+      }.bind(this));
  }
 
  openNote(event){
@@ -77,12 +75,11 @@ class AppContainer extends React.Component {
  }
 
 closeNote(id,title,description){
-    this.setState({activeNote: !this.state.activeNote})
-    axios.put('http://localhost:3000/notes/'+id, {title: title, description: description })
-    this.getDataNotes()
-    .then(function(response){
-      console.log('saved successfully')
-    });
+  this.setState({activeNote: !this.state.activeNote})
+  axios.put('http://localhost:3000/notes/'+id, {title: title, description: description })
+  .then(function(response){
+    console.log('saved successfully')
+  });
  }
 
   render(){

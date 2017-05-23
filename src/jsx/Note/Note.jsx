@@ -1,8 +1,8 @@
 import React from 'react';
 
 class Note extends React.Component{
-  callbackDelete() {
-       this.props.deleteNote(this.props.id)
+  callbackDelete(event) {
+       this.props.deleteNote(this.props.id, event)
   }
 
   callbackClose(){
