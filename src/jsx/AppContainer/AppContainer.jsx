@@ -13,7 +13,7 @@ class AppContainer extends React.Component {
       notebooks: [],
       newTitle: '',
       activeHeader : false,
-      activeNote: false
+      activeNote: true
     }
 
     this.handlerStateSearch = this.handlerStateSearch.bind(this);
@@ -33,10 +33,10 @@ class AppContainer extends React.Component {
   
   getDataNotes(){
    axios.get(`http://localhost:3000/notes`)
-  .then((response) => {
-    this.setState({notes: response.data})
-  })
-  .catch((error) => console.error('axios error', error))
+    .then((response) => {
+      this.setState({notes: response.data})
+    })
+    .catch((error) => console.error('axios error', error))
   }
 
   getDataNotebooks(){
@@ -56,11 +56,13 @@ class AppContainer extends React.Component {
   }
 
   addNote(event){
-  axios.post('http://localhost:3000/notes/', {title: "Hellow", description: "Test1" })
-  .then(function(response){      
-     this.getDataNotes();
+    axios.post('http://localhost:3000/notes/', {title: "Hellow", description: "Test1" })
+      .then(function(response){      
+       const newNote = Object.assign(response.data , {isNewNote: true} )
+       this.setState({notes: this.state.notes.concat(newNote)})
     }.bind(this));
   }
+
 
   deleteNote(idNote,event) {
     event.stopPropagation()
@@ -78,7 +80,7 @@ closeNote(id,title,description){
   this.setState({activeNote: !this.state.activeNote})
   axios.put('http://localhost:3000/notes/'+id, {title: title, description: description })
   .then(function(response){
-    console.log('saved successfully')
+    console.log('saved successfully');
   });
  }
 
