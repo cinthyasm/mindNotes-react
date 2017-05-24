@@ -7,7 +7,8 @@
     "build": "webpack",
     "api": "json-server --watch ./src/db/db.json",
     "dev-server": "webpack-dev-server",
-    "serve": "concurrently \"npm run dev-server\" \"npm run api\" "
+    "serve": "concurrently \"npm run dev-server\" \"npm run api\" ",
+    "raml": "raml2html ./docs/mindNotesapi.raml > ./docs/mindNotesapi.html"
   },
   "devDependencies": {
     "babel-core": "^6.24.1",
@@ -30,6 +31,7 @@
     "jquery": "^3.2.1",
     "json-server": "^0.10.1",
     "node-sass": "^4.5.2",
+    "raml2html": "^6.3.0",
     "react-router-dom": "next",
     "resolve-url-loader": "^2.0.2",
     "sass-loader": "^6.0.5",

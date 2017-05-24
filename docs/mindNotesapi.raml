@@ -1,0 +1,284 @@
+#%RAML 1.0
+title: MindNotes API
+version: v1
+protocols: [ HTTPS ] 
+baseUri: http://mindnotes/api/{version}
+mediaType: application/json
+
+securitySchemes:
+  basicAuth:
+    description: Each request must contain the headers necessary for basic authentication
+    type: Basic Authentication
+    describedBy:
+      headers:
+        Authorization:
+          description: Used to send the Base64-encoded "username:password" credentials
+          type: string
+      responses:
+        401:
+          description: |
+            Unauthorized. Either the provided username and password
+            combination is invalid, or the user is not allowed to access
+            the content provided by the requested URL.
+types:
+  Notebook:
+    type: object
+    properties:
+      id:
+        required: true
+        type: integer
+      name:
+        required: true
+        type: string
+  Note:
+    type: object
+    properties:
+      id:
+        required: true
+        type: integer
+      title:
+        required: true
+        type: string
+      description:
+        required: false
+        type: string
+      notebook:
+        required: true
+        type: integer
+      tags:
+        required: false
+        type: array
+  Tags:
+    type: object
+    properties:
+      id:
+        required: true
+        type: integer
+      name:
+        required: true
+        type: string
+
+/notebooks/:
+  get:
+    description: Load the list of Notebooks
+    responses:
+      200:
+        description: Status 200
+        body:
+          type: Notebook[]
+          example: |
+              [
+                { "id" : 1, "name" : "Todo List"},
+                { "id" : 2, "name" : "Homework"}
+              ]
+            
+      400:
+        description: Status 400
+        body:
+          type: Error
+  post:
+    description: Create a new notebook
+    body:
+     application/json:
+      type: Notebook
+      example: { "name" : "Another Notebook"}
+    responses:
+      200:
+        description: Status 200
+        body:
+          type: Notebook
+          example: { "id" : 5, "name" : "Another Notebook"}
+      400:
+        description: Status 400
+        body:
+          type: Error
+
+/notebooks/{notebookid}:
+  get:
+      description: Get a Notebook by id
+      responses:
+        200:
+          body:
+            application/json:
+              type: Notebook
+              example: { "id" : 5, "name" : "Homework"}
+        404:
+          body:
+            application/json:
+              type: Error
+  put:
+    description: "Update a Notebook"
+    body:
+      type: "Notebook"
+      example: { "name" : "New Name"}
+    responses:
+      200:
+        body:
+          type: "Notebook"
+          example: { "id" : 5, "name" : "New Name"}
+      404:
+          body:
+            application/json:
+              type: Error
+  delete:
+    description: "Delete a Notebook"
+    body:
+      type: "Notebook"
+    responses:
+      200:
+        body:
+          type: "Notebook"
+          example: { "id" : 5, "name" : "New Name"}
+      404:
+          body:
+            application/json:
+              type: Error
+/notes/:
+  get:
+    description: Load the list of Notes
+    responses:
+      200:
+        description: Status 200
+        body:
+          type: Note[]
+          example: |
+              [
+                { "id" : 1, "title" : "Note 1", "description": "List for shopping", "notebook": 1, "tags": [1,2,3,4]},
+                { "id" : 2, "title" : "Note 2", , "description": "English Homework", "notebook": 1, "tags": [1,2,3,4]}
+              ]  
+      400:
+        description: Status 400
+        body:
+          type: Error
+  post:
+    description: Create a new note
+    body:
+     application/json:
+      type: Note
+      example: { "title" : "Note 1", "description": "Remember...", "notebook": 1, "tags": [1,2]}
+    responses:
+      200:
+        description: Status 200
+        body:
+          type: Notebook
+          example: { id: 1, "title" : "Note 1", "description": "Remember...", "notebook": 1, "tags": [1,2]}
+      400:
+        description: Status 400
+        body:
+          type: Error
+
+/notes/{noteid}:
+  get:
+    description: Get a note by id
+    responses:
+      200:
+        body:
+          application/json:
+            type: Note
+            example: { id: 1, "title" : "Note 1", "description": "Remember...", "notebook": 1}
+      404:
+        body:
+          application/json:
+            type: Error
+  put:
+    description: "Update a Note"
+    body:
+      type: "Note"
+      example: {"title" : "Note 1", "description": "Remember...", "notebook": 1}
+    responses:
+      200:
+        body:
+          type: "Note"
+          example: { id: 1, "title" : "Note 1", "description": "Remember...", "notebook": 1}
+      404:
+          body:
+            application/json:
+              type: Error
+  delete:
+    description: "Delete a Note"
+    body:
+      type: "Note"
+    responses:
+      200:
+        body:
+          type: "Note"
+          example: { id: 1, "title" : "Note 1", "description": "Remember...", "notebook": 1}
+      404:
+          body:
+            application/json:
+              type: Error
+
+/tags/:
+  get:
+    description: Load the list of tags
+    responses:
+      200:
+        description: Status 200
+        body:
+          type: Tag[]
+          example: |
+              [
+                { "id" : 1, "name" : "Social"},
+                { "id" : 2, "name" : "School"}
+              ]  
+      400:
+        description: Status 400
+        body:
+          type: Error
+  post:
+    description: Create a new tag
+    body:
+     application/json:
+      type: Tag
+      example: { "name" : "Social"}
+    responses:
+      200:
+        description: Status 200
+        body:
+          type: Tag
+          example: { id: 1, "name" : "Social"}
+      400:
+        description: Status 400
+        body:
+          type: Error
+
+/tags/{tagid}:
+  get:
+    description: Get a tag by id
+    responses:
+      200:
+        body:
+          application/json:
+            type: Tag
+            example: { id: 1, "name" : "Social"}
+      404:
+        body:
+          application/json:
+            type: Error
+  put:
+    description: "Update a Tag"
+    body:
+      type: "Tag"
+      example: {"name" : "Social"}
+    responses:
+      200:
+        body:
+          type: "Tag"
+          example: { id: 1, "name" : "Social"}
+      404:
+          body:
+            application/json:
+              type: Error
+  delete:
+    description: "Delete a Tag"
+    body:
+      type: "Tag"
+    responses:
+      200:
+        body:
+          type: "Tag"
+          example: { id: 1, "name" : "Social"}
+      404:
+          body:
+            application/json:
+              type: Error
