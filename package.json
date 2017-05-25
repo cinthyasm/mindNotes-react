@@ -8,7 +8,8 @@
     "api": "json-server --watch ./src/db/db.json",
     "dev-server": "webpack-dev-server",
     "serve": "concurrently \"npm run dev-server\" \"npm run api\" ",
-    "raml": "raml2html ./docs/mindNotesapi.raml > ./docs/mindNotesapi.html"
+    "raml": "raml2html ./docs/mindNotesapi.raml > ./docs/mindNotesapi.html",
+    "start:server": "nodemon api/start.js"
   },
   "devDependencies": {
     "babel-core": "^6.24.1",
@@ -21,6 +22,7 @@
     "concurrently": "^3.4.0",
     "css-loader": "^0.28.1",
     "csslint-loader": "^1.0.0",
+    "dotenv": "^4.0.0",
     "eslint": "^3.19.0",
     "eslint-loader": "^1.7.1",
     "eslint-plugin-react": "^7.0.1",
@@ -45,6 +47,7 @@
     "axios": "^0.16.1",
     "express": "^4.15.3",
     "font-awesome": "^4.7.0",
+    "mongoose": "^4.10.2",
     "react": "^15.5.4",
     "react-dom": "^15.5.4"
   }
