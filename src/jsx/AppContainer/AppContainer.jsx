@@ -2,6 +2,7 @@ import React from 'react';
 import Header from './../Header/Header'
 import Content from './../Content/Content'
 import axios from 'axios'
+import {Route} from 'react-router-dom'
 
 class AppContainer extends React.Component {
 
@@ -26,7 +27,7 @@ class AppContainer extends React.Component {
     this.getDataNotebooks = this.getDataNotebooks.bind(this);
   }
 
-  componentDidMount () {
+  componentWillMount () {
     this.getDataNotes()
     this.getDataNotebooks()
   }
@@ -44,6 +45,7 @@ class AppContainer extends React.Component {
   .then((response) => {
     this.setState({notebooks: response.data})
   })
+  
   .catch((error) => console.error('axios error', error))
   }
 
@@ -76,7 +78,10 @@ class AppContainer extends React.Component {
    event.currentTarget.className = 'note-block note-modal--active'
  }
 
-closeNote(id,title,description){
+closeNote(id,title,description, event){
+  event.stopPropagation()
+  event.currentTarget.parentNode.parentNode.parentNode.className = 'note-block'
+  console.log("close");
   this.setState({activeNote: !this.state.activeNote})
   axios.put('http://localhost:3000/notes/'+id, {title: title, description: description })
   .then(function(response){
@@ -86,13 +91,15 @@ closeNote(id,title,description){
 
   render(){
    return(
-      <div>
-        <Header 
-          onChange={this.handlerStateSearch} 
-          onClick={this.handlerUiClick} 
-          searchTerm={this.state.searchTerm} 
-        />
-        <Content 
+
+      <Route path='/' render={() => (
+        <div>
+          <Header 
+            onChange={this.handlerStateSearch} 
+            onClick={this.handlerUiClick} 
+            searchTerm={this.state.searchTerm} 
+          />
+          <Content 
           searchTerm={this.state.searchTerm} 
           notes={this.state.notes} 
           notebooks={this.state.notebooks}
@@ -104,7 +111,9 @@ closeNote(id,title,description){
           openNote={this.openNote}
           closeNote={this.closeNote}
         />
-      </div>
+        </div>
+      )} />
+     
    ) 
   }
 }

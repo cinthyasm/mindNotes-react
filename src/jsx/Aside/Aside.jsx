@@ -1,6 +1,8 @@
 import React from 'react';
 import AsideMenu from './AsideMenu';
 import AsideNotebook from './AsideNotebook';
+import AsideTags from './AsideTags';
+import {Route} from 'react-router-dom'
 
 class Aside extends React.Component{
 
@@ -8,13 +10,8 @@ class Aside extends React.Component{
     return(
       <aside> 
         <AsideMenu onClick={this.props.onClick}/>
-        <div>
-          {this.props.notebooks.map((noteB) => {
-            return ( 
-              <AsideNotebook key={noteB.id} {...noteB}/>
-            )
-          })}
-        </div>
+        <Route path ='/notebooks' render={() => ( <AsideNotebook /> ) } />
+        <Route path= '/tags' render={ () => ( <AsideTags/>)} />
       </aside>
     )
   }
