@@ -1,10 +1,17 @@
 const mongoose = require('mongoose');
-var express  = require('express');
-var router = express.Router();
+const express  = require('express');
+const router = express.Router();
+const noteAPI = require('../controllers/notesController');
 
 
 router.get('/',(req,res) =>{
-    res.send('Home');
+    res.send('Welcome to MindNotes API');
 });
+
+//Notes router
+router.get('/notes', noteAPI.getAllNotes);
+router.get('/notes/:noteId', noteAPI.getSingleNote);
+router.post('/notes', noteAPI.createNote);
+router.delete('/notes/:noteId', noteAPI.deleteNote);
 
 module.exports = router;

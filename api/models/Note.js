@@ -12,7 +12,10 @@ const noteSchema = new mongoose.Schema({
     notebook:{
         type:Number,
         required: true
+    },
+    tags:{
+        type: [Number]
     }
 });
 
-module.exports = mongoose.model('note', noteSchema);
+module.exports = mongoose.model('Note', noteSchema);
