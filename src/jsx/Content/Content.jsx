@@ -1,6 +1,6 @@
 import React from 'react';
 import Aside from './../Aside/Aside';
-import Note from './../Note/Note';
+import NoteContainer from './../Containers/NoteContainer';
 
 class Content extends React.Component{
   render() {
@@ -18,18 +18,7 @@ class Content extends React.Component{
               </div>
             </div>
             <div className="row">
-              {this.props.notes.filter((note) => 
-                `${note.title} ${note.description}`.toUpperCase().indexOf(this.props.searchTerm.toUpperCase())>= 0)
-              .map((note) => {
-                return ( 
-                  <Note
-                    key={note.id} {...note} 
-                    deleteNote={this.props.deleteNote} 
-                    openNote={this.props.openNote} 
-                    isActiveNote ={this.props.isActiveNote} 
-                    closeNote={this.props.closeNote}/>
-                )
-              })}
+              <NoteContainer searchTerm={this.props.searchTerm}/>
             </div>
           </div>
         </div>

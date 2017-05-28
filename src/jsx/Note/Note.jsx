@@ -13,11 +13,11 @@ class Note extends React.Component{
     const {title,description, isNewNote} = this.props;
     return(
       <div className='col-xs-12 col-sm-6 col-md-3'>
-        <div className={isNewNote ? 'note-block note-modal--active': 'note-block' } onClick={this.props.openNote}>
+        <div className={isNewNote ? 'note-block note-modal--active': 'note-block'} onClick={this.props.openNote}>
           <div className='note note-modal--content'>
             <span className='close'>X</span>
-            <textarea className='note--title' maxLength='15' ref='title'>{title}</textarea>
-            <textarea className='note--description' ref='description'>{description}</textarea>
+            <textarea className='note--title' maxLength='15' ref='title' defaultValue={title}/>
+            <textarea className='note--description' ref='description' defaultValue={description}/>
             <div className='footer'>
               <button onClick={this.callbackDelete.bind(this)} className='footer--icon btn-delete'>
                 <i className='fa fa-trash' aria-hidden='true'></i>
