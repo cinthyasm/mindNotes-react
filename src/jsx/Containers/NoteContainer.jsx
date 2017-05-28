@@ -1,6 +1,6 @@
 import React from 'react';
 import axios from 'axios'
-import Note from './../Note/Note'
+import Note from './../Components/Note/Note'
 
 class NoteContainer extends React.Component {
 
@@ -8,8 +8,7 @@ class NoteContainer extends React.Component {
     super(props);
     this.state = {
       notes : [],
-      newTitle: '',
-      newDescription: ''
+      noteColor: ''
     }
 
     //functions' binding
@@ -18,6 +17,7 @@ class NoteContainer extends React.Component {
     this.openNote = this.openNote.bind(this);
     this.addNote = this.addNote.bind(this);
     this.closeNote = this.closeNote.bind(this);
+   // this.handlerNoteColor = this.handlerNoteColor.bind(this);
   }//constructor
 
   componentWillMount(){
@@ -31,8 +31,6 @@ class NoteContainer extends React.Component {
     })
     .catch((error) => console.error('axios error', error))
   }//getDataNotes()
-
-  
 
   /*****NOTE's CRUDS*****/
   deleteNote(idNote,event) {

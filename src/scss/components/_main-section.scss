@@ -156,21 +156,22 @@
       right: calculateRem(2px);
     }
     .color-picker{
-      left: 0;
-      bottom:-25px;
+      left: 5px;
+      bottom: 25px;
     }
   }
 }
-
 
 .color-picker {
   position: absolute;
   display: none;
   height: 30px;
   width: 100px;
-  bottom: -28px;
+  bottom: 20px;
   right: 0;
-  border: 2px solid black;
+  padding: 2px;
+  background-color: white;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.2);
   border-radius: 10px;
   text-align: center;
   &:hover{
@@ -192,14 +193,13 @@
 }
 
 .blue,
-.green,
+.red,
 .default {
   display: inline-block;
   height: 20px;
   width: 20px;
   margin: 0.15rem;
   border-radius: 50%;
-  border: 1px solid black;
 }
 
 .default {
@@ -218,13 +218,13 @@
   border-color: #FFFFFF #FFFFFF transparent transparent;
 }
 
-.green,
-.green-note {
+.red,
+.red-note {
   background-color: $brand-red;
   border: 2px solid $dark-red;
 }
 
-.green-note:before {
+.red-note:before {
   background: none repeat scroll 0 0 $dark-red;
   /* Corner color */
   border-color: #FFFFFF #FFFFFF $dark-red $dark-red;

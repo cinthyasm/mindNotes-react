@@ -1,6 +1,6 @@
 import React from 'react';
 import Aside from './../Aside/Aside';
-import NoteContainer from './../Containers/NoteContainer';
+import NoteContainer from './../../Containers/NoteContainer';
 
 class Content extends React.Component{
   render() {

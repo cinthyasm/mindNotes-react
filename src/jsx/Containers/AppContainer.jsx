@@ -1,6 +1,6 @@
 import React from 'react';
-import Header from './../Header/Header'
-import Content from './../Content/Content'
+import Header from './../Components/Header/Header'
+import Content from './../Components/Content/Content'
 import axios from 'axios'
 import {Route} from 'react-router-dom'
 
