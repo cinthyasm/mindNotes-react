@@ -1,14 +1,9 @@
 {
   "notes": [
     {
-      "title": "Work on house",
-      "description": "8am: San Jose, 4pm sadasdas",
-      "id": 1
-    },
-    {
       "title": "Hellow",
       "description": "Test1",
-      "id": 2
+      "id": 5
     }
   ],
   "notebooks": [
@@ -23,6 +18,16 @@
     {
       "id": 3,
       "name": "Work"
+    }
+  ],
+  "tags": [
+    {
+      "id": 1,
+      "name": "Important"
+    },
+    {
+      "id": 2,
+      "name": "School"
     }
   ]
 }

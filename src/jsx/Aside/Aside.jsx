@@ -6,15 +6,23 @@ import {Route} from 'react-router-dom'
 
 class Aside extends React.Component{
 
-   render() {
+  render() {
+    const self = this;
     return(
       <aside> 
         <AsideMenu onClick={this.props.onClick}/>
-        <Route path ='/notebooks' render={() => ( <AsideNotebook /> ) } />
-        <Route path= '/tags' render={ () => ( <AsideTags/>)} />
+        <Route path='/notebooks' render={ () => 
+          <div>
+            {this.props.notebooks.map((noteB) => {
+              return ( <AsideNotebook key={noteB.id} {...noteB}/>)
+              })
+            }
+          </div>
+        }/>
+       <Route path= '/tags' render={ () => ( <AsideTags/>)} />
       </aside>
-    )
-  }
+    ) // return
+  } // render
 }
 
 export default Aside;

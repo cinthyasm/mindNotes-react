@@ -5,7 +5,9 @@ class AsideTags extends React.Component {
 
   render(){
     return(
-      <h2>AsideTags</h2>
+      <div className="aside--notebook text-center">
+        <a>Tags<i className="fa fa-angle-right" aria-hidden="true"></i></a>
+      </div>
     ) 
   }
 }

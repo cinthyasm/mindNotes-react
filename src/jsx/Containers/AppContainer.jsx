@@ -28,8 +28,9 @@ class AppContainer extends React.Component {
   }
 
   componentWillMount () {
-    this.getDataNotes()
-    this.getDataNotebooks()
+    this.getDataNotes();
+    this.getDataNotebooks();
+    console.log(this.props);
   }
   
   getDataNotes(){

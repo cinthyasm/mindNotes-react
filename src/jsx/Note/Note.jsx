@@ -19,18 +19,18 @@ class Note extends React.Component{
             <textarea className='note--title' maxLength='15' ref='title'>{title}</textarea>
             <textarea className='note--description' ref='description'>{description}</textarea>
             <div className='footer'>
-              <button className='footer--icon btn-color'>
-                <i className='fa fa-paint-brush' aria-hidden='true'></i>
-              </button>
               <button onClick={this.callbackDelete.bind(this)} className='footer--icon btn-delete'>
                 <i className='fa fa-trash' aria-hidden='true'></i>
               </button>
               <button className='btn btn-default footer--btn-save' onClick={this.callbackClose.bind(this)}>Save</button>
+              <button className='footer--icon btn-color'>
+                <i className='fa fa-paint-brush' aria-hidden='true'></i>
+              </button>
+              <div className='color-picker'>
+                <div className='blue'></div>
+                <div className='green'></div>
+                <div className='default'></div>
             </div>
-            <div className='color-picker'>
-              <div className='blue'></div>
-              <div className='green'></div>
-              <div className='blue'></div>
             </div>
           </div>
         </div>
