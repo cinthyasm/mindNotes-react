@@ -20,6 +20,7 @@ router.delete('/notes/:noteId', noteAPI.deleteNote);
 router.get('/notebooks', noteBookAPI.getAllNotebooks);
 router.get('/notebooks/:notebookId', noteBookAPI.getSingleNotebook);
 router.post('/notebooks', noteBookAPI.createNotebook);
+router.put('/notebooks/:notebookId', noteBookAPI.updateNotebook);
 router.delete('/notebooks/:notebookId', noteBookAPI.deleteNotebook);
 
 module.exports = router;

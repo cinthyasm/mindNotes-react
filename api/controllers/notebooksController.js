@@ -33,6 +33,19 @@ exports.createNotebook= (req,res) => {
 }
 
 
+exports.updateNotebook = (req,res) =>{
+
+    Notebook.findById(req.params.notebookId).exec((err,notebook) =>{
+        if(err){
+            res.status(404).send(err);
+        }else{
+            notebook.name = req.body.name;
+            notebook.save();
+            res.json(notebook);
+        }
+    });
+}
+
 exports.deleteNotebook = (req,res) =>{
   Notebook.findByIdAndRemove(req.params.notebookId).exec((err,data) =>{
       if(err){
