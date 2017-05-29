@@ -24,7 +24,7 @@ class NoteContainer extends React.Component {
   }//compnentWillMount()
 
   getDataNotes(){
-   axios.get(`http://localhost:3000/notes`)
+   axios.get(`http://localhost:3000/api/notes`)
     .then((response) => {
       this.setState({notes: response.data})
     })

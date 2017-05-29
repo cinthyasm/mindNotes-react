@@ -34,6 +34,23 @@ exports.createNote = (req,res) =>{
     });
 }
 
+exports.updateNote = (req,res) =>{
+
+    Note.findById(req.params.noteId).exec((err,note) =>{
+        if(err){
+            res.status(404).send(err);
+        }else{
+            note.title = req.body.title;
+            note.description = req.body.description;
+            note.color = req.body.color;
+            note.notebook = req.body.notebook;
+            note.tags = req.body.tags;
+            note.save();
+            res.json(note);
+        }
+    });
+}
+
 exports.deleteNote = (req,res) =>{
 
     Note.findByIdAndRemove(req.params.noteId).exec((err,data) =>{

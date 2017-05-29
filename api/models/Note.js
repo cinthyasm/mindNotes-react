@@ -9,6 +9,10 @@ const noteSchema = new mongoose.Schema({
         type:String, 
         required: false
     },
+    color:{
+        type:String, 
+        required: false
+    },
     notebook:{
         type:Number,
         required: true

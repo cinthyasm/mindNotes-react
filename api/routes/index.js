@@ -12,6 +12,7 @@ router.get('/',(req,res) =>{
 router.get('/notes', noteAPI.getAllNotes);
 router.get('/notes/:noteId', noteAPI.getSingleNote);
 router.post('/notes', noteAPI.createNote);
+router.put('/notes/:noteId', noteAPI.updateNote);
 router.delete('/notes/:noteId', noteAPI.deleteNote);
 
 module.exports = router;
