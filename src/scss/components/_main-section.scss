@@ -13,14 +13,14 @@
 .note {
   background-color: $brand-yellow;
   height: 175px;
-  width: 100%;
+  margin-bottom: 1rem;
   padding: 1rem;
   position: relative;
-  margin-bottom: 1rem;
+  width: 100%;
   input {
-    width: 100%;
     background-color: transparent;
     border: 0;
+    width: 100%;
     &:focus {
       outline: 0;
     }
@@ -240,17 +240,17 @@
 }
 
 .fa-add{
-  position: fixed;
-  bottom: 1.5rem;
-  right: 1.5rem;
-  height: 30px;
-  width: 30px;
   background-color: $brand-green;
-  cursor: pointer;
   border-radius: 50%;
+  bottom: 1.5rem;
   box-shadow: 0 10px 16px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19);
+  cursor: pointer;
   font-size: 1.5rem;
+  height: 30px;
   padding: 1rem;
+  position: fixed;
+  right: 1.5rem;
+  width: 30px;
   z-index: 3;
   &:hover{
     background-color:white;
@@ -259,10 +259,10 @@
     }
   }
   .fa{
-    position: absolute;
     color:white;
-    top: 17%;
     left: 21%;
+    position: absolute;
+    top: 17%;
   }
 }
 

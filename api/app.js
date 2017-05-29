@@ -4,6 +4,7 @@ const bodyParser = require('body-parser');
 const app = express();
 
 require('./models/Note');
+require('./models/Notebook');
 const routes = require('./routes/index.js');
 
 app.use(morgan('tiny'));
