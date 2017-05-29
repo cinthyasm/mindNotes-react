@@ -45,7 +45,17 @@ module.exports = {
       {
         test: /\.(ttf|otf|eot|svg|woff(2)?)(\?[a-z0-9]+)?$/,
         loader: 'file-loader?name=fonts/[name].[ext]'
-      }
+      },
+      {
+        test: /\.(jpg|jpeg|gif)$/,
+        exclude: [/node_modules/],
+        loader: 'url-loader?limit=10000&name=./public/images/[name].[ext]'
+      },
+      {
+        test: /\.(svg|ico|png)$/,
+        exclude: [/node_modules/],
+        loader: 'url-loader?limit=10000&name=./public/images/[name].[ext]'
+      },
     ]
   },
   plugins: [
