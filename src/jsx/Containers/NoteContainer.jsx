@@ -46,29 +46,30 @@ class NoteContainer extends React.Component {
   /*****NOTE's CRUDS*****/
   deleteNote(idNote,event) {
     event.stopPropagation()
-    axios.delete('http://localhost:3000/notes/'+idNote, {title: "Hellow", description: "Test1", "color": "default" })
+    axios.delete(`http://localhost:3000/api/notes/${idNote}`)
     .then(function(response){      
       this.getDataNotes();
-      }.bind(this));
+    }.bind(this));
   }//deleteNode()
 
   openNote(event){
    event.currentTarget.className = 'note-block note-modal--active'
  }//openNode()
 
-  closeNote(id,title,description, event){
+  closeNote(idNote,title,description,color,notebook,tags,event){
     event.stopPropagation()
     event.currentTarget.parentNode.parentNode.parentNode.className = 'note-block'
     this.setState({activeNote: !this.state.activeNote})
-    axios.put('http://localhost:3000/notes/'+id, {title: title, description: description })
+    axios.put(`http://localhost:3000/api/notes/${idNote}`, {title: title, description: description, color:color, notebook:notebook, tags:tags})
     .then(function(response){
       console.log('saved successfully');
     });
   }//closeNote()
 
   addNote(event){
-    axios.post('http://localhost:3000/notes/', {title: "Hellow", description: "Test1" })
-      .then(function(response){      
+    axios.post('http://localhost:3000/api/notes', {title: "New Note", description: "", color:"", notebook:1, tags:[] })
+      .then(function(response){
+       console.log(response);
        const newNote = Object.assign(response.data , {isNewNote: true} )
        this.setState({notes: this.state.notes.concat(newNote)})
     }.bind(this));
@@ -84,7 +85,7 @@ class NoteContainer extends React.Component {
         .map((note) => {
           return ( 
             <Note
-              key={note.id} {...note} 
+              key={note._id} {...note} 
               deleteNote={this.deleteNote} 
               openNote={this.openNote} 
               closeNote={this.closeNote}

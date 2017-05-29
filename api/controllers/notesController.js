@@ -22,6 +22,7 @@ exports.getSingleNote = (req,res) => {
 exports.createNote = (req,res) =>{
 
     const newNote = new Note(req.body);
+    console.log(req.body);
     newNote.save((err,data) =>{
 
         if(err){
