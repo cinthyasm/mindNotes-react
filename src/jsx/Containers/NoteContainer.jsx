@@ -78,7 +78,7 @@ class NoteContainer extends React.Component {
   render(){
     return(
     <div> 
-    <h2 onClick={this.addNote}>ADD</h2> 
+      <div onClick={this.addNote} className='fa-add'><i className='fa fa-plus' aria-hidden='true'></i></div>
       {this.state.notes.filter((note) => 
         `${note.title} ${note.description}`.toUpperCase().indexOf(this.props.searchTerm.toUpperCase())>= 0)
         .map((note) => {

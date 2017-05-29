@@ -239,6 +239,32 @@
   margin-left: 230px;
 }
 
+.fa-add{
+  position: fixed;
+  bottom: 1.5rem;
+  right: 1.5rem;
+  height: 30px;
+  width: 30px;
+  background-color: $brand-green;
+  cursor: pointer;
+  border-radius: 50%;
+  box-shadow: 0 10px 16px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19);
+  font-size: 1.5rem;
+  padding: 1rem;
+  z-index: 3;
+  &:hover{
+    background-color:white;
+    .fa{
+      color: $brand-green;
+    }
+  }
+  .fa{
+    position: absolute;
+    color:white;
+    top: 17%;
+    left: 21%;
+  }
+}
 
 @media  screen and (max-width: 530px){
   .row-notes__active {

@@ -4,19 +4,22 @@
       "title": "Hellow",
       "description": "asdasdasd",
       "id": 6,
-      "color": "blue"
+      "color": "red"
+    },
+    {
+      "title": "Hellow",
+      "description": "Example",
+      "id": 7
+    },
+    {
+      "title": "Hellow",
+      "description": "Hola Mundo",
+      "id": 8
     },
     {
       "title": "Hellow",
       "description": "Test1",
-      "id": 7,
-      "color": "default"
-    },
-    {
-      "title": "Hellow",
-      "description": "Test1asda",
-      "id": 8,
-      "color": "red"
+      "id": 9
     }
   ],
   "notebooks": [
