@@ -8,7 +8,6 @@ class NoteContainer extends React.Component {
     super(props);
     this.state = {
       notes : [],
-      noteColor: ''
     }
 
     //functions' binding
@@ -17,7 +16,7 @@ class NoteContainer extends React.Component {
     this.openNote = this.openNote.bind(this);
     this.addNote = this.addNote.bind(this);
     this.closeNote = this.closeNote.bind(this);
-   // this.handlerNoteColor = this.handlerNoteColor.bind(this);
+    this.handlerNoteColor = this.handlerNoteColor.bind(this);
   }//constructor
 
   componentWillMount(){
@@ -32,10 +31,22 @@ class NoteContainer extends React.Component {
     .catch((error) => console.error('axios error', error))
   }//getDataNotes()
 
+  handlerNoteColor(id,color,event){
+    event.stopPropagation();
+    axios.patch('http://localhost:3000/notes/'+id, {color: color })
+    .then(function(response){
+      let noteArray = this.state.notes;
+      const otherArray = this.state.notes.map((note) => note.id==response.data["id"]? note.color= response.data["color"]: console.log("no"));
+      this.setState({
+        notes: noteArray
+      })
+    }.bind(this));
+  }
+
   /*****NOTE's CRUDS*****/
   deleteNote(idNote,event) {
     event.stopPropagation()
-    axios.delete('http://localhost:3000/notes/'+idNote, {title: "Hellow", description: "Test1" })
+    axios.delete('http://localhost:3000/notes/'+idNote, {title: "Hellow", description: "Test1", "color": "default" })
     .then(function(response){      
       this.getDataNotes();
       }.bind(this));
@@ -76,7 +87,9 @@ class NoteContainer extends React.Component {
               key={note.id} {...note} 
               deleteNote={this.deleteNote} 
               openNote={this.openNote} 
-              closeNote={this.closeNote}/>
+              closeNote={this.closeNote}
+              changeColor={this.handlerNoteColor}
+              />
             )//return
           }//map
         )//map

@@ -1,19 +1,22 @@
 {
   "notes": [
     {
-      "title": "Hello World",
-      "description": "qweqweqweasdasasdasdasdasdasddasdasdasdasd",
-      "id": 5
-    },
-    {
-      "title": "asdasdadwwwqwqe",
-      "description": "Test1",
-      "id": 6
+      "title": "Hellow",
+      "description": "asdasdasd",
+      "id": 6,
+      "color": "blue"
     },
     {
       "title": "Hellow",
       "description": "Test1",
-      "id": 7
+      "id": 7,
+      "color": "default"
+    },
+    {
+      "title": "Hellow",
+      "description": "Test1asda",
+      "id": 8,
+      "color": "red"
     }
   ],
   "notebooks": [

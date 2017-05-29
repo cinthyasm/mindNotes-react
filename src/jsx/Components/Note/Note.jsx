@@ -2,19 +2,23 @@ import React from 'react';
 
 class Note extends React.Component{
   callbackDelete(event) {
-       this.props.deleteNote(this.props.id, event)
+    this.props.deleteNote(this.props.id, event)
   }
 
   callbackClose(event){
     this.props.closeNote(this.props.id,this.refs.title.value,this.refs.description.value, event);
   }
-  
-  render(){
-    const {title,description, isNewNote} = this.props;
+  callBackColor(color,event){
+     this.props.changeColor(this.props.id,color,event);
+  }
+
+
+  render(){ 
+    const {title,description, isNewNote, color} = this.props;
     return(
       <div className='col-xs-12 col-sm-6 col-md-3'>
         <div className={isNewNote ? 'note-block note-modal--active': 'note-block'} onClick={this.props.openNote}>
-          <div className='note note-modal--content'>
+          <div className={color ==='red'? 'note red-note note-modal--content' : color==='blue'?'note blue-note note-modal--content': 'note note-modal--content' }>
             <span className='close'>X</span>
             <textarea className='note--title' maxLength='15' ref='title' defaultValue={title}/>
             <textarea className='note--description' ref='description' defaultValue={description}/>
@@ -27,9 +31,9 @@ class Note extends React.Component{
                 <i className='fa fa-paint-brush' aria-hidden='true'></i>
               </button>
               <div className='color-picker'>
-                <div className='blue'></div>
-                <div className='green'></div>
-                <div className='default'></div>
+                <div className='blue' onClick={this.callBackColor.bind(this,'blue')}></div>
+                <div className='red'  onClick={this.callBackColor.bind(this,'red')}></div>
+                <div className='default' onClick={this.callBackColor.bind(this,'default')}></div>
             </div>
             </div>
           </div>
