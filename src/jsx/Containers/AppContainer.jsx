@@ -10,26 +10,13 @@ class AppContainer extends React.Component {
     super(props);
     this.state = {
       searchTerm: '',
-      notebooks: [],
-      activeHeader : true,
+      noteBookName: '',
+      activeHeader : true
     }
     this.handlerStateSearch = this.handlerStateSearch.bind(this);
     this.handlerUiClick = this.handlerUiClick.bind(this);
-    this.getDataNotebooks = this.getDataNotebooks.bind(this);
     this.handlerStateSearch = this.handlerStateSearch.bind(this);
   }
-
-  componentWillMount () {
-    this.getDataNotebooks();
-  }//componentWillMount()
-
-  getDataNotebooks(){
-    axios.get(`http://localhost:3000/notebooks`)
-    .then((response) => {
-      this.setState({notebooks: response.data})
-    })
-    .catch((error) => console.error('axios error', error))
-  }//getDataNotebooks()
 
   handlerStateSearch(event){
     this.setState({searchTerm: event.target.value})
@@ -49,10 +36,9 @@ class AppContainer extends React.Component {
             searchTerm={this.state.searchTerm} 
           />
           <Content 
-          searchTerm={this.state.searchTerm} 
-          notebooks={this.state.notebooks}
-          isActive = {this.state.activeHeader}
-        />
+            searchTerm={this.state.searchTerm} 
+            isActive = {this.state.activeHeader}
+          />
         </div>
       )} />
      

@@ -9,7 +9,7 @@
     "dev-server": "webpack-dev-server",
     "serve": "concurrently \"npm run dev-server\" \"npm run api\" ",
     "raml": "raml2html ./docs/mindNotesapi.raml > ./docs/mindNotesapi.html",
-    "start:server": "nodemon api/start.js"
+    "start:server": "concurrently \"npm run dev-server\" \"nodemon api/start.js\""
   },
   "devDependencies": {
     "babel-core": "^6.24.1",

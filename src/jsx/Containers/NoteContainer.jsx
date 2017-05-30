@@ -90,7 +90,7 @@ class NoteContainer extends React.Component {
               openNote={this.openNote} 
               closeNote={this.closeNote}
               changeColor={this.handlerNoteColor}
-              />
+            />
             )//return
           }//map
         )//map
