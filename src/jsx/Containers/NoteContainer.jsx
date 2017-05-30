@@ -18,11 +18,17 @@ class NoteContainer extends React.Component {
     this.handlerNoteColor = this.handlerNoteColor.bind(this);
   }//constructor
 
-  componentWillReceiveProps(){
+  componentWillMount(){
 
     this.getDataNotes();
 
   }//compnentWillMount()
+
+  componentWillReceiveProps(){
+
+    this.getDataNotes();
+
+  }//componentWillReceiveProps()
 
   filterNotesByNotebook(){
     let notesByNotebook = this.state.notes.slice()
@@ -65,8 +71,9 @@ class NoteContainer extends React.Component {
    event.currentTarget.className = 'note-block note-modal--active'
  }//openNode()
 
-  closeNote(idNote,title,description,color,notebook,tags,event){
+  closeNote(idNote,title,description,color,tags,event){
     event.stopPropagation()
+    let notebook = this.props.match.params.id;
     event.currentTarget.parentNode.parentNode.parentNode.className = 'note-block'
     this.setState({activeNote: !this.state.activeNote})
     axios.put(`http://localhost:3000/api/notes/${idNote}`, {title: title, description: description, color:color, notebook:notebook, tags:tags})
@@ -76,9 +83,9 @@ class NoteContainer extends React.Component {
   }//closeNote()
 
   addNote(event){
-    axios.post('http://localhost:3000/api/notes', {title: "New Note", description: "", color:"", notebook:1, tags:[] })
+    let notebook = this.props.match.params.id;
+    axios.post('http://localhost:3000/api/notes', {title: "New Note", description: "", color:"", notebook:notebook, tags:[] })
       .then(function(response){
-       console.log(response);
        const newNote = Object.assign(response.data , {isNewNote: true} )
        this.setState({notes: this.state.notes.concat(newNote)})
     }.bind(this));
