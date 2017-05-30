@@ -14,7 +14,7 @@ const noteSchema = new mongoose.Schema({
         required: false
     },
     notebook:{
-        type:Number,
+        type:String,
         required: true
     },
     tags:{

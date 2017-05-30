@@ -9,7 +9,6 @@ class NoteContainer extends React.Component {
     this.state = {
       notes : [],
     }
-
     //functions' binding
     this.getDataNotes = this.getDataNotes.bind(this);
     this.deleteNote = this.deleteNote.bind(this);
@@ -19,14 +18,24 @@ class NoteContainer extends React.Component {
     this.handlerNoteColor = this.handlerNoteColor.bind(this);
   }//constructor
 
-  componentWillMount(){
+  componentWillReceiveProps(){
+
     this.getDataNotes();
+
   }//compnentWillMount()
+
+  filterNotesByNotebook(){
+    let notesByNotebook = this.state.notes.slice()
+    let notebookId = this.props.match.params.id
+    notesByNotebook = notesByNotebook.filter(function( note ) { return note.notebook == notebookId})
+    this.setState({notes: notesByNotebook})
+  }
 
   getDataNotes(){
    axios.get(`http://localhost:3000/api/notes`)
     .then((response) => {
       this.setState({notes: response.data})
+      this.filterNotesByNotebook()
     })
     .catch((error) => console.error('axios error', error))
   }//getDataNotes()
@@ -75,8 +84,8 @@ class NoteContainer extends React.Component {
     }.bind(this));
   }//addNote()
 
-      
   render(){
+    
     return(
     <div> 
       <div onClick={this.addNote} className='fa-add'><i className='fa fa-plus' aria-hidden='true'></i></div>

@@ -1,6 +1,7 @@
 import React from 'react';
-import HeaderBrand from './HeaderBrand';
+import HeaderBrand from './HeaderBrand'
 import HeaderSearch from './HeaderSearch'
+import PropTypes from 'prop-types';
 
 class Header extends React.Component{
   render() {
@@ -20,6 +21,10 @@ class Header extends React.Component{
        </header>
     )
   }
+}
+
+Header.propTypes = {
+  searchTerm: PropTypes.string
 }
 
 export default Header;

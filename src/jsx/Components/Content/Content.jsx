@@ -1,6 +1,8 @@
 import React from 'react';
 import Aside from './../Aside/Aside';
 import NoteContainer from './../../Containers/NoteContainer';
+import PropTypes from 'prop-types';
+import {Route} from 'react-router-dom'
 
 class Content extends React.Component{
   render() {
@@ -18,13 +20,20 @@ class Content extends React.Component{
               </div>
             </div>
             <div className="row">
-              <NoteContainer searchTerm={this.props.searchTerm}/>
+                <Route path={'/notebooks/:id'} render={(props)=>
+                    <NoteContainer searchTerm={this.props.searchTerm} {...props}/>
+                }/>
             </div>
           </div>
         </div>
       </div>
     )
   }
+}
+
+Content.propTypes = {
+  isActive: PropTypes.bool,
+  searchTerm: PropTypes.string
 }
 
 export default Content;
