@@ -25,7 +25,7 @@ class NotebookContainer extends React.Component{
       .then(function(response){
        this.setState({notebooks: this.state.notebooks.concat(response.data)});
     }.bind(this))
-    event.target.value = "";
+     event.target.value = "";
       return false; // returning false will prevent the event from bubbling up.
     }
   }
@@ -33,7 +33,9 @@ class NotebookContainer extends React.Component{
   render(){
     return(
       <div className='element-container'>
-        <input type="text" placeholder='New notebook' onKeyDown={this.addNotebook.bind(this)}/>
+          <div className='aside--input'>
+            <input type="text" placeholder='New notebook' onKeyDown={this.addNotebook.bind(this)}/>
+          </div>
         <div className="aside-items-container">
           {this.state.notebooks.map((noteB) => {
                 return ( 

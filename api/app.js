@@ -5,6 +5,7 @@ const app = express();
 
 require('./models/Note');
 require('./models/Notebook');
+require('./models/Tag');
 const routes = require('./routes/index.js');
 
 app.use(morgan('tiny'));
