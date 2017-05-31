@@ -8,6 +8,10 @@ const tagSchema = new mongoose.Schema({
   color:{
     type: String,
     require: false
+  },
+  slug:{
+    type: String,
+    required: true
   }
 });
 

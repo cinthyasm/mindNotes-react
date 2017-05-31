@@ -18,7 +18,7 @@ const noteSchema = new mongoose.Schema({
         required: true
     },
     tags:{
-        type: [Number]
+        type: [String]
     }
 });
 

@@ -28,16 +28,27 @@ class NoteContainer extends React.Component {
 
   filterNotesByNotebook(){
     let notesByNotebook = this.state.notes.slice()
-    let notebookId = this.props.location.query
+    let notebookId = this.props.location.query.id
     notesByNotebook = notesByNotebook.filter(function( note ) { return note.notebook == notebookId})
     this.setState({notes: notesByNotebook})
+  }
+
+   filterNotesByTags(){
+    let notesByTags = this.state.notes.slice()
+    let tagId = this.props.location.query.id
+    notesByTags = notesByTags.filter(function( note ) { return note.tags.indexOf(tagId) != -1})
+    this.setState({notes: notesByTags})
   }
 
   getDataNotes(){
    axios.get(`http://localhost:3000/api/notes`)
     .then((response) => {
       this.setState({notes: response.data})
-      this.filterNotesByNotebook()
+      if(this.props.location.query.type == 'notebooks'){
+        this.filterNotesByNotebook()
+      }else if(this.props.location.query.type == 'tags'){
+        this.filterNotesByTags()
+      }
     })
     .catch((error) => console.error('axios error', error))
   }//getDataNotes()
@@ -67,9 +78,9 @@ class NoteContainer extends React.Component {
    event.currentTarget.className = 'note-block note-modal--active'
  }//openNode()
 
-  closeNote(idNote,title,description,color,tags,event){
+  closeNote(idNote,title,description,color,notebook,tags,event){
+    console.log(notebook);
     event.stopPropagation()
-    let notebook = this.props.location.query
     event.currentTarget.parentNode.parentNode.parentNode.className = 'note-block'
     this.setState({activeNote: !this.state.activeNote})
     axios.put(`http://localhost:3000/api/notes/${idNote}`, {title: title, description: description, color:color, notebook:notebook, tags:tags})
@@ -79,7 +90,7 @@ class NoteContainer extends React.Component {
   }//closeNote()
 
   addNote(event){
-    let notebook = this.props.location.query
+    let notebook = this.props.location.query.id
     console.log()
     axios.post('http://localhost:3000/api/notes', {title: "New Note", description: "", color:"", notebook:notebook, tags:[] })
       .then(function(response){
@@ -92,7 +103,9 @@ class NoteContainer extends React.Component {
     
     return(
     <div> 
-      <div onClick={this.addNote} className='fa-add'><i className='fa fa-plus' aria-hidden='true'></i></div>
+      {this.props.location.query.type == 'notebooks' ? (
+        <div onClick={this.addNote} className='fa-add'><i className='fa fa-plus' aria-hidden='true'></i></div>
+      ) : ( null )}
       {this.state.notes.filter((note) => 
         `${note.title} ${note.description}`.toUpperCase().indexOf(this.props.searchTerm.toUpperCase())>= 0)
         .map((note) => {

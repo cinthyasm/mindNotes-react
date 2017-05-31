@@ -76,7 +76,7 @@ class NotebookContainer extends React.Component{
     return(
       <div className='element-container'>
           <div className='aside--input'>
-            <input type="text" placeholder='New notebook' onKeyDown={this.addNotebook.bind(this)}/>
+            <input type="text" placeholder='New Notebook' className='form-control' onKeyDown={this.addNotebook.bind(this)}/>
           </div>
         <div className="aside-items-container">
           {this.state.notebooks.map((noteB) => {

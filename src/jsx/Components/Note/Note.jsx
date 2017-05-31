@@ -6,7 +6,7 @@ class Note extends React.Component{
   }
 
   callbackClose(event){
-    this.props.closeNote(this.props._id,this.refs.title.value,this.refs.description.value,"",[], event);
+    this.props.closeNote(this.props._id,this.refs.title.value,this.refs.description.value,"",this.props.notebook,[], event);
   }
   callBackColor(color,event){
      this.props.changeColor(this.props._id,color,event);

@@ -31,7 +31,10 @@ class TagContainer extends React.Component{
 
   addTag(event){
     if(event.keyCode == 13){
-      axios.post('http://localhost:3000/api/tags',{name: event.target.value})
+
+      let slug = event.target.value.toLowerCase().replace(/[^a-z0-9 -]/g, '').replace(/\s+/g, '-')
+
+      axios.post('http://localhost:3000/api/tags',{name: event.target.value, slug: slug})
       .then(function(response){
        this.setState({tags: this.state.tags.concat(response.data)});
     }.bind(this))
@@ -78,7 +81,7 @@ class TagContainer extends React.Component{
     return(
       <div className='element-container'>
           <div className='aside--input'>
-            <input type="text" placeholder='Add Name tag + enter' onKeyDown={this.addTag.bind(this)}/>
+            <input type="text" placeholder='New Tag' className='form-control' onKeyDown={this.addTag.bind(this)}/>
           </div>
         <div className="aside-items-container">
           {this.state.tags.map((noteB) => {
