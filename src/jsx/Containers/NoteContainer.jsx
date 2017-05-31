@@ -53,41 +53,50 @@ class NoteContainer extends React.Component {
     .catch((error) => console.error('axios error', error))
   }//getDataNotes()
 
-  handlerNoteColor(id,color,event){
+  handlerNoteColor(idNote,title,description,notebook,tags,color,event){
     event.stopPropagation();
-    axios.patch('http://localhost:3000/notes/'+id, {color: color })
+    console.log(idNote);
+    axios.put(`http://localhost:3000/api/notes/${idNote}`, {title: title, description: description, color:color, notebook:notebook, tags:tags})
     .then(function(response){
-      let noteArray = this.state.notes;
-      const otherArray = this.state.notes.map((note) => note.id==response.data["id"]? note.color= response.data["color"]: console.log("no"));
+      const newState = this.state.notes.map((note)=> this.functionChange(note,response)) //delete from state the tag
       this.setState({
-        notes: noteArray
-      })
+        notes: newState//add the tag updated
+      });
     }.bind(this));
   }
+
+  functionChange(note, response){
+    if(note._id == response.data._id){
+      note.color = response.data.color;
+    }
+    return note;
+  }
+
 
   /*****NOTE's CRUDS*****/
   deleteNote(idNote,event) {
     event.stopPropagation()
     axios.delete(`http://localhost:3000/api/notes/${idNote}`)
     .then(function(response){      
-      this.getDataNotes();
+      const newState = this.state.notes.filter(note => note._id != response.data._id) //delete from state the tag
+      this.setState({
+        notes: newState
+      })
     }.bind(this));
   }//deleteNode()
 
-  openNote(event){
-   event.currentTarget.className = 'note-block note-modal--active'
- }//openNode()
-
   closeNote(idNote,title,description,color,notebook,tags,event){
-    console.log(notebook);
     event.stopPropagation()
     event.currentTarget.parentNode.parentNode.parentNode.className = 'note-block'
     this.setState({activeNote: !this.state.activeNote})
     axios.put(`http://localhost:3000/api/notes/${idNote}`, {title: title, description: description, color:color, notebook:notebook, tags:tags})
     .then(function(response){
-      console.log('saved successfully');
     });
   }//closeNote()
+  openNote(event){
+    event.currentTarget.className = 'note-block note-modal--active'
+  }//openNode()
+
 
   addNote(event){
     let notebook = this.props.location.query.id
