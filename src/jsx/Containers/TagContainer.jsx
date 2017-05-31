@@ -10,6 +10,7 @@ class TagContainer extends React.Component{
       tags:[]
     }
     this.deleteTag = this.deleteTag.bind(this);
+    this.updateTag = this.updateTag.bind(this);
   }//constructor
 
 
@@ -42,24 +43,35 @@ class TagContainer extends React.Component{
   deleteTag(idTag){
     axios.delete(`http://localhost:3000/api/tags/${idTag}`)
     .then(function(response){
-      
       this.setState({
         tags: this.state.tags.filter(item => item._id != response.data._id)
       });
-      
     }.bind(this));
   }
 
   setEditable(event){
     event.target.contentEditable = "true";
     event.target.focus();
-    console.log("editable");
   }
 
   setNoEditable(event){
     event.target.contentEditable = "false";
-    console.log("lost focus");
+    event.target.focus();
   }
+
+  updateTag(idNote,  name, event){
+    if(event.keyCode == 13){
+      event.preventDefault();
+       axios.put(`http://localhost:3000/api/tags/${idNote}`, {name: name, color: "blue"})
+       .then(function(response){
+         const newState = this.state.tags.filter(tag => tag._id != response.data._id) //delete from state the tag
+         this.setState({
+          tags: newState.concat(response.data)//add the tag updated
+        });
+       }.bind(this));//end axios
+    }//end if
+    return false;//prevent event to bubbling up
+  }//updateTag
 
   render(){
     return(
@@ -74,6 +86,7 @@ class TagContainer extends React.Component{
                     onDelete ={this.deleteTag}
                     setEditable={this.setEditable}
                     setNoEditable={this.setNoEditable}
+                    onKeyDown={this.updateTag}
                   />)
                 }
               )

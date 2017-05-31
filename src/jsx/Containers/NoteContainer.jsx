@@ -19,15 +19,11 @@ class NoteContainer extends React.Component {
   }//constructor
 
   componentWillMount(){
-
     this.getDataNotes();
-
-  }//compnentWillMount()
+  }//componentWillMount()
 
   componentWillReceiveProps(){
-
     this.getDataNotes();
-
   }//componentWillReceiveProps()
 
   filterNotesByNotebook(){
