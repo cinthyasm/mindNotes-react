@@ -41,6 +41,12 @@ class NoteContainer extends React.Component {
     this.setState({notes: notesByTags})
   }
 
+  filterNotesByFavorites(){
+    let notesByFavorites = this.state.notes.slice()
+    notesByFavorites = notesByFavorites.filter(function( note ) { return note.favorite == true})
+    this.setState({notes: notesByFavorites})
+  }
+
   getDataNotes(){
    axios.get(`http://localhost:3000/api/notes`)
     .then((response) => {
@@ -49,6 +55,8 @@ class NoteContainer extends React.Component {
         this.filterNotesByNotebook()
       }else if(this.props.location.query.type == 'tags'){
         this.filterNotesByTags()
+      }else if(this.props.location.query.type == 'favorites'){
+        this.filterNotesByFavorites()
       }
     })
     .catch((error) => console.error('axios error', error))
@@ -113,10 +121,9 @@ class NoteContainer extends React.Component {
     console.log(favorite)
     axios.put(`http://localhost:3000/api/notes/${idNote}`, {title: title, description: description, color:color, notebook:notebook, tags:tags,favorite:favorite})
     .then(function(response){
-      console.log(response)
       const newState = this.state.notes.map((note)=> this.functionUpdateFav(note,response)) //delete from state the tag
       this.setState({
-        notes: newState//add the tag updated
+        notes: newState
       });
     }.bind(this));
   }

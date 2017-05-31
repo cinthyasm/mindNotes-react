@@ -33,7 +33,7 @@ class Note extends React.Component{
               <button onClick={this.callbackDelete.bind(this)} className='footer--icon btn-delete'>
                 <i className='fa fa-trash' aria-hidden='true'></i>
               </button>
-              <button className='footer--icon footer--btn-fav' onClick={this.callBackFavorite.bind(this)}><i className="fa fa-star-o" aria-hidden="true"></i></button>
+              <button className='footer--icon footer--btn-fav' onClick={this.callBackFavorite.bind(this)}><i className={favorite ? 'fa fa-star': 'fa fa-star-o'} aria-hidden="true"></i></button>
               <button className='btn btn-default footer--btn-save' onClick={this.callbackClose.bind(this)}>Save</button>
               <button className='footer--icon btn-color'>
                 <i className='fa fa-paint-brush' aria-hidden='true'></i>
