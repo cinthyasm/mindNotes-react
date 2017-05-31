@@ -28,7 +28,7 @@ class NoteContainer extends React.Component {
 
   filterNotesByNotebook(){
     let notesByNotebook = this.state.notes.slice()
-    let notebookId = this.props.match.params.id
+    let notebookId = this.props.location.query
     notesByNotebook = notesByNotebook.filter(function( note ) { return note.notebook == notebookId})
     this.setState({notes: notesByNotebook})
   }
@@ -69,7 +69,7 @@ class NoteContainer extends React.Component {
 
   closeNote(idNote,title,description,color,tags,event){
     event.stopPropagation()
-    let notebook = this.props.match.params.id;
+    let notebook = this.props.location.query
     event.currentTarget.parentNode.parentNode.parentNode.className = 'note-block'
     this.setState({activeNote: !this.state.activeNote})
     axios.put(`http://localhost:3000/api/notes/${idNote}`, {title: title, description: description, color:color, notebook:notebook, tags:tags})
@@ -79,7 +79,8 @@ class NoteContainer extends React.Component {
   }//closeNote()
 
   addNote(event){
-    let notebook = this.props.match.params.id;
+    let notebook = this.props.location.query
+    console.log()
     axios.post('http://localhost:3000/api/notes', {title: "New Note", description: "", color:"", notebook:notebook, tags:[] })
       .then(function(response){
        const newNote = Object.assign(response.data , {isNewNote: true} )

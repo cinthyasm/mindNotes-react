@@ -6,10 +6,7 @@ const AsideNotebook = (props) =>{
 
   return(
       <div className="aside--notebook text-center">
-        <div>
-          <i className="fa fa-ellipsis-v" aria-hidden="true"></i>
-        </div>
-        <Link to={`/notebooks/${props._id}`}> {props.name}<i className='fa fa-angle-right' aria-hidden='true'></i></Link>
+        <Link to={{ pathname:`/notebooks/${props.slug}`,query: props._id}}> {props.name}<i className='fa fa-angle-right' aria-hidden='true'></i></Link>
       </div>
   )
 }

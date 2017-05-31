@@ -21,13 +21,16 @@ class NotebookContainer extends React.Component{
 
   addNotebook(event){
     if(event.keyCode == 13){
-      axios.post('http://localhost:3000/api/notebooks',{name: event.target.value})
+
+      let slug = event.target.value.toLowerCase().replace(/[^a-z0-9 -]/g, '').replace(/\s+/g, '-')
+      
+      axios.post('http://localhost:3000/api/notebooks',{name: event.target.value, slug: slug})
       .then(function(response){
        this.setState({notebooks: this.state.notebooks.concat(response.data)});
-    }.bind(this))
-     event.target.value = "";
-      return false; // returning false will prevent the event from bubbling up.
-    }
+      }.bind(this))
+      event.target.value = "";
+        return false; // returning false will prevent the event from bubbling up.
+      }
   }
 
   render(){
