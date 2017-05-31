@@ -30,6 +30,7 @@ class Note extends React.Component{
               <button className='footer--icon btn-color'>
                 <i className='fa fa-paint-brush' aria-hidden='true'></i>
               </button>
+              <button className='footer--icon footer--btn-fav'><i className="fa fa-star-o" aria-hidden="true"></i></button>
               <div className='color-picker'>
                 <div className='blue' onClick={this.callBackColor.bind(this,'blue')}></div>
                 <div className='red'  onClick={this.callBackColor.bind(this,'red')}></div>

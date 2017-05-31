@@ -99,6 +99,10 @@ class NoteContainer extends React.Component {
     }.bind(this));
   }//addNote()
 
+  favNote(){
+
+  }
+
   render(){
     
     return(
@@ -116,6 +120,7 @@ class NoteContainer extends React.Component {
               openNote={this.openNote} 
               closeNote={this.closeNote}
               changeColor={this.handlerNoteColor}
+              favNote={this.favNote}
             />
             )//return
           }//map

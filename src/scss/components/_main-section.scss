@@ -74,13 +74,14 @@
   }
   .footer {
     position: absolute;
-    bottom: 0;
+    bottom: calculateRem(5px);
     right: calculateRem(5px);
     text-align: right;
     display: none;
     .footer--icon {
       background: transparent;
       border: 0;
+      margin-right: calculateRem(4px);
       &:focus {
         outline: 0;
       }
@@ -154,6 +155,10 @@
       font-size: calculateRem(16px);
       position: absolute;
       right: calculateRem(2px);
+    }
+    .footer--btn-fav{
+      left: calculateRem(90px);
+      bottom: calculateRem(5px);
     }
     .color-picker{
       left: 5px;

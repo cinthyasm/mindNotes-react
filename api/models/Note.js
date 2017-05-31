@@ -19,6 +19,9 @@ const noteSchema = new mongoose.Schema({
     },
     tags:{
         type: [String]
+    },
+    favorite:{
+        type: Boolean
     }
 });
 

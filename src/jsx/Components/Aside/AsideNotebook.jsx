@@ -15,7 +15,7 @@ class AsideNotebook extends React.Component {
   render(){
     return(
       <div className="aside--notebook text-center">
-        <div style={{position: "absolute"}} onClick={this.callBackDelete.bind(this)}>x</div>
+        <div className='aside--notebook--close' onClick={this.callBackDelete.bind(this)}><i className="fa fa-times" aria-hidden="true"></i></div>
           <Link to={{ pathname:`/notebooks/${this.props.slug}`,query: {'id':this.props._id,'type':'notebooks'}}}> 
             <div onDoubleClick={this.props.setEditable} 
                   onBlur={this.props.setNoEditable} 
