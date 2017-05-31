@@ -56,7 +56,7 @@ class TagContainer extends React.Component{
 
   setNoEditable(event){
     event.target.contentEditable = "false";
-    event.target.focus();
+    event.target.click();
   }
 
   updateTag(idNote,  name, event){
@@ -69,6 +69,7 @@ class TagContainer extends React.Component{
           tags: newState.concat(response.data)//add the tag updated
         });
        }.bind(this));//end axios
+       event.target.contentEditable = "false";
     }//end if
     return false;//prevent event to bubbling up
   }//updateTag

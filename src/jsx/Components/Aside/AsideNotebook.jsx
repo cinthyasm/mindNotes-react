@@ -2,13 +2,33 @@ import React from 'react';
 import {Link} from 'react-router-dom'
 
 
-const AsideNotebook = (props) =>{
+class AsideNotebook extends React.Component {
 
-  return(
+  callBackDelete(event){
+    this.props.onDelete(this.props._id,event);
+  }
+
+  callBackUpdate(event){
+    this.props.onKeyDown(this.props._id, this.refs.noteBName.innerHTML, event);
+  }
+
+  render(){
+    return(
       <div className="aside--notebook text-center">
-        <Link to={{ pathname:`/notebooks/${props.slug}`,query: props._id}}> {props.name}<i className='fa fa-angle-right' aria-hidden='true'></i></Link>
-      </div>
-  )
-}
+        <div style={{position: "absolute"}} onClick={this.callBackDelete.bind(this)}>x</div>
+          <Link to={{ pathname:`/notebooks/${this.props.slug}`,query: this.props._id}}> 
+            <div onDoubleClick={this.props.setEditable} 
+                  onBlur={this.props.setNoEditable} 
+                  onKeyDown={this.callBackUpdate.bind(this)}
+                  ref='noteBName'>
+                {this.props.name}
+            </div>
+            <i className='fa fa-angle-right' aria-hidden='true'></i>
+          </Link>
+        </div>
+    ) 
+  }
+};
 
 export default AsideNotebook;
+

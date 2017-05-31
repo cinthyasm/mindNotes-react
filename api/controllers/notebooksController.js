@@ -40,6 +40,7 @@ exports.updateNotebook = (req,res) =>{
             res.status(404).send(err);
         }else{
             notebook.name = req.body.name;
+            notebook.slug = req.body.slug;
             notebook.save();
             res.json(notebook);
         }
