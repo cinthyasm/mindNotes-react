@@ -16,7 +16,7 @@ class AsideNotebook extends React.Component {
     return(
       <div className="aside--notebook text-center">
         <div style={{position: "absolute"}} onClick={this.callBackDelete.bind(this)}>x</div>
-          <Link to={{ pathname:`/notebooks/${props.slug}`,query: {'id':props._id,'type':'notebooks'}}}> 
+          <Link to={{ pathname:`/notebooks/${this.props.slug}`,query: {'id':this.props._id,'type':'notebooks'}}}> 
             <div onDoubleClick={this.props.setEditable} 
                   onBlur={this.props.setNoEditable} 
                   onKeyDown={this.callBackUpdate.bind(this)}
@@ -29,5 +29,7 @@ class AsideNotebook extends React.Component {
     ) 
   }
 };
+
+export default AsideNotebook;
 
 
