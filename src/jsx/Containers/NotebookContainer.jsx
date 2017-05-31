@@ -19,7 +19,6 @@ class NotebookContainer extends React.Component{
     .then((response) => {
       this.setState({notebooks: response.data})
     })
-    .catch((error) => console.error('axios error', error))
   }
   createSlug(name){
     let slug = name.toLowerCase().replace(/[^a-z0-9 -]/g, '').replace(/\s+/g, '-')
@@ -32,7 +31,7 @@ class NotebookContainer extends React.Component{
         this.setState({notebooks: this.state.notebooks.concat(response.data)});
       }.bind(this))
       event.target.value = "";
-        return false; // returning false will prevent the event from bubbling up.
+      return false; // returning false will prevent the event from bubbling up.
       }
   }
 
@@ -80,15 +79,15 @@ class NotebookContainer extends React.Component{
           </div>
         <div className="aside-items-container">
           {this.state.notebooks.map((noteB) => {
-                return ( 
-                  <AsideNotebook key={noteB._id} {...noteB}
-                    onDelete ={this.deleteNotebook}
-                    setEditable={this.setEditable}
-                    setNoEditable={this.setNoEditable}
-                    onKeyDown={this.updateNotebook}
-                  />)
-                }
-              )
+              return ( 
+                <AsideNotebook key={noteB._id} {...noteB}
+                  onDelete ={this.deleteNotebook}
+                  setEditable={this.setEditable}
+                  setNoEditable={this.setNoEditable}
+                  onKeyDown={this.updateNotebook}
+                />)
+              }
+            )
           }
         </div>
     </div>

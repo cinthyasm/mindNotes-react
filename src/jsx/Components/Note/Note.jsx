@@ -9,9 +9,8 @@ class Note extends React.Component{
     this.props.closeNote(this.props._id,this.refs.title.value,this.refs.description.value,"",this.props.notebook,[], event);
   }
   callBackColor(color,event){
-     this.props.changeColor(this.props._id,color,event);
+     this.props.changeColor(this.props._id,this.refs.title.value, this.refs.description.value,this.props.notebook,[],color,event);
   }
-
 
   render(){ 
     const {title,description, isNewNote, color} = this.props;

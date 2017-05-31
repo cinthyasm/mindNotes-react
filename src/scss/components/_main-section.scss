@@ -12,6 +12,7 @@
 //Notes 
 .note {
   background-color: $brand-yellow;
+  border: 2px solid $yellow-corner;
   height: 175px;
   margin-bottom: 1rem;
   padding: 1rem;
@@ -43,7 +44,7 @@
     display: block;
     position: absolute;
     right: -2px;
-    top: 0;
+    top: -2px;
     width: 0;
   }
   textarea {
