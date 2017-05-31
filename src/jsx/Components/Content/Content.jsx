@@ -26,6 +26,9 @@ class Content extends React.Component{
                 <Route path={'/tags/:id'} render={(props)=>
                     <NoteContainer searchTerm={this.props.searchTerm} {...props}/>
                 }/>
+                <Route path={'/favorites'} render={(props)=>
+                    <NoteContainer searchTerm={this.props.searchTerm} {...props}/>
+                }/>
             </div>
           </div>
         </div>

@@ -12,8 +12,16 @@ class Note extends React.Component{
      this.props.changeColor(this.props._id,this.refs.title.value, this.refs.description.value,this.props.notebook,[],color,event);
   }
 
+  callBackFavorite(event){
+    if(this.props.favorite == false){
+      this.props.favNote(this.props._id,this.refs.title.value, this.refs.description.value,this.props.notebook,[],"",true,event);
+    }else{
+      this.props.favNote(this.props._id,this.refs.title.value, this.refs.description.value,this.props.notebook,[],"",false,event);
+    }
+  }
+
   render(){ 
-    const {title,description, isNewNote, color} = this.props;
+    const {title,description, isNewNote, color, favorite} = this.props;
     return(
       <div className='col-xs-12 col-sm-6 col-md-3'>
         <div className={isNewNote ? 'note-block note-modal--active': 'note-block'} onClick={this.props.openNote}>
@@ -25,11 +33,11 @@ class Note extends React.Component{
               <button onClick={this.callbackDelete.bind(this)} className='footer--icon btn-delete'>
                 <i className='fa fa-trash' aria-hidden='true'></i>
               </button>
+              <button className='footer--icon footer--btn-fav' onClick={this.callBackFavorite.bind(this)}><i className="fa fa-star-o" aria-hidden="true"></i></button>
               <button className='btn btn-default footer--btn-save' onClick={this.callbackClose.bind(this)}>Save</button>
               <button className='footer--icon btn-color'>
                 <i className='fa fa-paint-brush' aria-hidden='true'></i>
               </button>
-              <button className='footer--icon footer--btn-fav'><i className="fa fa-star-o" aria-hidden="true"></i></button>
               <div className='color-picker'>
                 <div className='blue' onClick={this.callBackColor.bind(this,'blue')}></div>
                 <div className='red'  onClick={this.callBackColor.bind(this,'red')}></div>

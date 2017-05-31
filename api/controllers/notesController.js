@@ -43,6 +43,7 @@ exports.updateNote = (req,res) =>{
             note.color = req.body.color;
             note.notebook = req.body.notebook;
             note.tags = req.body.tags;
+            note.favorite = req.body.favorite;
             note.save();
             res.json(note);
         }

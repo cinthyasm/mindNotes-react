@@ -16,6 +16,7 @@ class NoteContainer extends React.Component {
     this.addNote = this.addNote.bind(this);
     this.closeNote = this.closeNote.bind(this);
     this.handlerNoteColor = this.handlerNoteColor.bind(this);
+    this.favNote = this.favNote.bind(this);
   }//constructor
 
   componentWillMount(){
@@ -55,7 +56,6 @@ class NoteContainer extends React.Component {
 
   handlerNoteColor(idNote,title,description,notebook,tags,color,event){
     event.stopPropagation();
-    console.log(idNote);
     axios.put(`http://localhost:3000/api/notes/${idNote}`, {title: title, description: description, color:color, notebook:notebook, tags:tags})
     .then(function(response){
       const newState = this.state.notes.map((note)=> this.functionChange(note,response)) //delete from state the tag
@@ -108,8 +108,24 @@ class NoteContainer extends React.Component {
     }.bind(this));
   }//addNote()
 
-  favNote(){
+  favNote(idNote,title,description,notebook,tags,color,favorite,event){
+    event.stopPropagation()
+    console.log(favorite)
+    axios.put(`http://localhost:3000/api/notes/${idNote}`, {title: title, description: description, color:color, notebook:notebook, tags:tags,favorite:favorite})
+    .then(function(response){
+      console.log(response)
+      const newState = this.state.notes.map((note)=> this.functionUpdateFav(note,response)) //delete from state the tag
+      this.setState({
+        notes: newState//add the tag updated
+      });
+    }.bind(this));
+  }
 
+   functionUpdateFav(note, response){
+    if(note._id == response.data._id){
+      note.favorite = response.data.favorite;
+    }
+    return note;
   }
 
   render(){
