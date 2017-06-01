@@ -11,8 +11,12 @@ class Aside extends React.Component{
     return(
       <aside className='full-height'> 
         <AsideMenu onClick={this.props.onClick}/>
-        <Route path={'/notebooks'} component={NotebookContainer}/>
-       <Route path= '/tags' render={ () => ( <TagContainer/>)} />
+        <Route path={'/notebooks'} render={(props)=>
+          <NotebookContainer notebookNameClick={this.props.notebookNameClick}/>
+        }/>
+         <Route path={'/tags' } render={(props)=>
+          <TagContainer notebookNameClick={this.props.notebookNameClick}/>
+        }/>
       </aside>
     ) // return
   } // render

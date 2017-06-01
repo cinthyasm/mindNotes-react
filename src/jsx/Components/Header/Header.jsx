@@ -14,7 +14,7 @@ class Header extends React.Component{
             <span></span>
           </div>
           <div className='container-fluid'>
-            <HeaderBrand/>
+            <HeaderBrand notebookNameClick={this.props.notebookNameClick}/>
             <HeaderSearch onChange={this.props.onChange} searchTerm={this.props.searchTerm}/>
           </div>
           </nav>

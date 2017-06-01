@@ -11,11 +11,13 @@ class AppContainer extends React.Component {
     this.state = {
       searchTerm: '',
       noteBookName: '',
-      activeHeader : true
+      activeHeader : true,
+      notebookName: "MindNotes App"
     }
     this.handlerStateSearch = this.handlerStateSearch.bind(this);
     this.handlerUiClick = this.handlerUiClick.bind(this);
     this.handlerStateSearch = this.handlerStateSearch.bind(this);
+    this.handlerNotebookName = this.handlerNotebookName.bind(this);
   }
 
   handlerStateSearch(event){
@@ -26,6 +28,10 @@ class AppContainer extends React.Component {
     this.setState({activeHeader: !this.state.activeHeader})
   }//handlerUiClick()
 
+  handlerNotebookName(name){
+     this.setState({notebookName:name})
+  }
+
   render(){
    return(
       <Route path='/' render={() => (
@@ -33,11 +39,14 @@ class AppContainer extends React.Component {
           <Header 
             onChange={this.handlerStateSearch} 
             onClick={this.handlerUiClick} 
-            searchTerm={this.state.searchTerm} 
+            searchTerm={this.state.searchTerm}
+            notebookNameClick={this.handlerNotebookName}
           />
           <Content 
             searchTerm={this.state.searchTerm} 
             isActive = {this.state.activeHeader}
+            notebookNameClick={this.handlerNotebookName}
+            notebookName={this.state.notebookName}
           />
         </div>
       )} />

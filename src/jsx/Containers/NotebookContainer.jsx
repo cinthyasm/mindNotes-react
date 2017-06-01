@@ -85,6 +85,7 @@ class NotebookContainer extends React.Component{
                   setEditable={this.setEditable}
                   setNoEditable={this.setNoEditable}
                   onKeyDown={this.updateNotebook}
+                  notebookNameClick={this.props.notebookNameClick}
                 />)
               }
             )

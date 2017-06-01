@@ -11,9 +11,14 @@ class AsideTags extends React.Component {
   callBackUpdate(event){
     this.props.onKeyDown(this.props._id, this.refs.tagName.innerHTML, event);
   }
+
+   callBackNotebookName(){
+    this.props.notebookNameClick(this.refs.tagName.innerHTML);
+  }
+
   render(){
     return(
-      <div className="aside--notebook text-center">
+      <div className="aside--notebook text-center" onClick={this.callBackNotebookName.bind(this)}>
       <div className='aside--notebook--close' onClick={this.callBackDelete.bind(this)}><i className="fa fa-times" aria-hidden="true"></i></div>
          <Link to={{ pathname:`/tags/${this.props.slug}`,query: {'id':this.props._id,'type':'tags'}}}>
           <div onDoubleClick={this.props.setEditable} 

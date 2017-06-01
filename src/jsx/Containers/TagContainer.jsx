@@ -91,6 +91,7 @@ class TagContainer extends React.Component{
                     setEditable={this.setEditable}
                     setNoEditable={this.setNoEditable}
                     onKeyDown={this.updateTag}
+                    notebookNameClick={this.props.notebookNameClick}
                   />)
                 }
               )

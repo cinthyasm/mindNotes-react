@@ -12,9 +12,13 @@ class AsideNotebook extends React.Component {
     this.props.onKeyDown(this.props._id, this.refs.noteBName.innerHTML, event);
   }
 
+  callBackNotebookName(){
+    this.props.notebookNameClick(this.refs.noteBName.innerHTML);
+  }
+
   render(){
     return(
-      <div className="aside--notebook text-center">
+      <div className="aside--notebook text-center" onClick={this.callBackNotebookName.bind(this)}>
         <div className='aside--notebook--close' onClick={this.callBackDelete.bind(this)}><i className="fa fa-times" aria-hidden="true"></i></div>
           <Link to={{ pathname:`/notebooks/${this.props.slug}`,query: {'id':this.props._id,'type':'notebooks'}}}> 
             <div onDoubleClick={this.props.setEditable} 
