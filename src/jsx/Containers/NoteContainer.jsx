@@ -8,24 +8,40 @@ class NoteContainer extends React.Component {
     super(props);
     this.state = {
       notes : [],
+      currentTags: "", //tags selected from UI
+      tags: [], //all tags
+      isTagOn: false
     }
     //functions' binding
     this.getDataNotes = this.getDataNotes.bind(this);
+    this.getTags = this.getTags.bind(this);
     this.deleteNote = this.deleteNote.bind(this);
     this.openNote = this.openNote.bind(this);
     this.addNote = this.addNote.bind(this);
     this.closeNote = this.closeNote.bind(this);
     this.handlerNoteColor = this.handlerNoteColor.bind(this);
     this.favNote = this.favNote.bind(this);
+    this.handlerTagSelector = this.handlerTagSelector.bind(this);
+    this.functionHandlerTags = this.functionHandlerTags.bind(this);
   }//constructor
 
   componentWillMount(){
     this.getDataNotes();
+    this.getTags();
   }//componentWillMount()
 
   componentWillReceiveProps(){
     this.getDataNotes();
   }//componentWillReceiveProps()
+
+  getTags(){
+    axios.get(`http://localhost:3000/api/tags`)   
+    .then((response) => {
+      this.setState({tags: response.data})
+    })
+    .catch((error) => console.error('axios error', error))
+  }
+
 
   filterNotesByNotebook(){
     let notesByNotebook = this.state.notes.slice()
@@ -64,7 +80,7 @@ class NoteContainer extends React.Component {
 
   handlerNoteColor(idNote,title,description,notebook,tags,color,event){
     event.stopPropagation();
-    axios.put(`http://localhost:3000/api/notes/${idNote}`, {title: title, description: description, color:color, notebook:notebook, tags:tags})
+    axios.put(`http://localhost:3000/api/notes/${idNote}`, {title: title, description: description, color:color, notebook:notebook, tags:this.state.currentTags})
     .then(function(response){
       const newState = this.state.notes.map((note)=> this.functionChange(note,response)) //delete from state the tag
       this.setState({
@@ -80,6 +96,16 @@ class NoteContainer extends React.Component {
     return note;
   }
 
+  functionHandlerTags(tagArray){
+    let options = tagArray;
+    const value = [];
+    for (var i = 0;  i < options.length; i++) {
+      if (options[i].selected) {
+        value.push(options[i].value);
+      }
+    }   
+    this.state.currentTags = value;
+  }
 
   /*****NOTE's CRUDS*****/
   deleteNote(idNote,event) {
@@ -93,18 +119,20 @@ class NoteContainer extends React.Component {
     }.bind(this));
   }//deleteNode()
 
-  closeNote(idNote,title,description,color,notebook,tags,event){
+  closeNote(idNote,title,description,color,notebook,event){
     event.stopPropagation()
     event.currentTarget.parentNode.parentNode.parentNode.className = 'note-block'
     this.setState({activeNote: !this.state.activeNote})
-    axios.put(`http://localhost:3000/api/notes/${idNote}`, {title: title, description: description, color:color, notebook:notebook, tags:tags})
+    axios.put(`http://localhost:3000/api/notes/${idNote}`,
+          {title: title, description: description, color:color, notebook:notebook, tags:this.state.currentTags})
     .then(function(response){
     });
+    this.setState({isTagOn: false})
   }//closeNote()
+
   openNote(event){
     event.currentTarget.className = 'note-block note-modal--active'
   }//openNode()
-
 
   addNote(event){
     let notebook = this.props.location.query.id
@@ -128,15 +156,18 @@ class NoteContainer extends React.Component {
     }.bind(this));
   }
 
-   functionUpdateFav(note, response){
+  functionUpdateFav(note, response){
     if(note._id == response.data._id){
       note.favorite = response.data.favorite;
     }
     return note;
   }
 
+  handlerTagSelector(){
+    this.setState({isTagOn: !this.state.isTagOn})
+  }
+
   render(){
-    
     return(
     <div> 
       {this.props.location.query.type == 'notebooks' ? (
@@ -147,12 +178,16 @@ class NoteContainer extends React.Component {
         .map((note) => {
           return ( 
             <Note
+              isTagOn={this.state.isTagOn}
               key={note._id} {...note} 
               deleteNote={this.deleteNote} 
               openNote={this.openNote} 
               closeNote={this.closeNote}
               changeColor={this.handlerNoteColor}
               favNote={this.favNote}
+              setTags={this.functionHandlerTags}
+              togglerTag={this.handlerTagSelector}
+              tags={this.state.tags}
             />
             )//return
           }//map

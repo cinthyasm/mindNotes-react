@@ -6,10 +6,10 @@ class Note extends React.Component{
   }
 
   callbackClose(event){
-    this.props.closeNote(this.props._id,this.refs.title.value,this.refs.description.value,"",this.props.notebook,[], event);
+    this.props.closeNote(this.props._id,this.refs.title.value,this.refs.description.value,"",this.props.notebook, event);
   }
   callBackColor(color,event){
-     this.props.changeColor(this.props._id,this.refs.title.value, this.refs.description.value,this.props.notebook,[],color,event);
+     this.props.changeColor(this.props._id,this.refs.title.value, this.refs.description.value,this.props.notebook,color,event);
   }
 
   callBackFavorite(event){
@@ -20,8 +20,12 @@ class Note extends React.Component{
     }
   }
 
+  handlerSelected(event){
+    this.props.setTags(event.target.options);
+  }
+
   render(){ 
-    const {title,description, isNewNote, color, favorite} = this.props;
+    const {title,description,noteTags, isNewNote, color, favorite} = this.props;
     return(
       <div className='col-xs-12 col-sm-6 col-md-3'>
         <div className={isNewNote ? 'note-block note-modal--active': 'note-block'} onClick={this.props.openNote}>
@@ -35,6 +39,7 @@ class Note extends React.Component{
               </button>
               <button className='footer--icon footer--btn-fav' onClick={this.callBackFavorite.bind(this)}><i className={favorite ? 'fa fa-star': 'fa fa-star-o'} aria-hidden="true"></i></button>
               <button className='btn btn-default footer--btn-save' onClick={this.callbackClose.bind(this)}>Save</button>
+              <button className='footer--icon footer--btn-tag' onClick={this.props.togglerTag}><i className="fa fa-bookmark-o" aria-hidden="true"></i></button>
               <button className='footer--icon btn-color'>
                 <i className='fa fa-paint-brush' aria-hidden='true'></i>
               </button>
@@ -42,7 +47,17 @@ class Note extends React.Component{
                 <div className='blue' onClick={this.callBackColor.bind(this,'blue')}></div>
                 <div className='red'  onClick={this.callBackColor.bind(this,'red')}></div>
                 <div className='default' onClick={this.callBackColor.bind(this,'default')}></div>
-            </div>
+              </div>
+              <div className="tags">
+                
+              </div>
+              <div className={this.props.isTagOn? 'tag-selector tag--selector-active': 'tag-selector'}>
+                <select className='form-control' multiple defaultValue={this.props.tags} onChange={this.handlerSelected.bind(this)}>
+                  {this.props.tags.map((option)=> 
+                    <option key={option._id} value={option._id}>{option.name}</option>
+                  )}
+                </select>
+              </div>
             </div>
           </div>
         </div>

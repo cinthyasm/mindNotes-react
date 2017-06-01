@@ -74,6 +74,7 @@
     }
   }
   .footer {
+    width: 100%;
     position: absolute;
     bottom: calculateRem(5px);
     right: calculateRem(5px);
@@ -90,8 +91,15 @@
     .footer--btn-save{
       display: none;
     }
+    .tags{
+      position: absolute;
+      top: 0;
+      left: 10px;
+      width: 100%;
+      max-width: 60%;
+    }
 
-  }
+  }//enf .footer
   .close {
     display: none;
   }
@@ -111,6 +119,9 @@
     .footer .footer--hover {
       display: flex;
     }
+  }
+  .note--description{
+    height: 50vh;
   }
   .note-modal--content {
     color: $font-color-modal;
@@ -159,6 +170,10 @@
     }
     .footer--btn-fav{
       left: calculateRem(90px);
+      bottom: calculateRem(5px);
+    }
+    .footer--btn-tag{
+      left: calculateRem(130px);
       bottom: calculateRem(5px);
     }
     .color-picker{
@@ -272,6 +287,18 @@
   }
 }
 
+.tag-selector{
+  display: none;
+  position: absolute;
+  right: 0;
+  top: -120px;
+}
+
+.tag--selector-active{
+  display: block;
+}
+
+
 @media  screen and (max-width: 530px){
   .row-notes__active {
     margin-left: 0;
@@ -285,3 +312,4 @@
     }
   }
 }
+
