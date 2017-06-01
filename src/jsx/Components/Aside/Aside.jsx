@@ -1,5 +1,6 @@
 import React from 'react';
 import AsideMenu from './AsideMenu';
+import AsideHome from './AsideHome';
 import NotebookContainer from './../../Containers/NotebookContainer';
 import TagContainer from './../../Containers/TagContainer';
 import {Route} from 'react-router-dom'
@@ -17,6 +18,7 @@ class Aside extends React.Component{
          <Route path={'/tags' } render={(props)=>
           <TagContainer notebookNameClick={this.props.notebookNameClick}/>
         }/>
+        <Route path={'/' } component={AsideHome}/>
       </aside>
     ) // return
   } // render

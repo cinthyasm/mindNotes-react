@@ -83,6 +83,25 @@
     height: calc(100% - 26px);
     overflow-y: auto;
   }
+
+  .aside-home{
+    display: none;
+    margin-top: calculateRem(130px);
+    width: 90%;
+    i{
+      color: $dark-gray-border;
+      font-size: calculateRem(60px);
+    }
+    p{
+      margin-top: calculateRem(5px);
+      font-size: calculateRem(17px);
+    }
+  }
+
+  .__react_component_tooltip.place-right{
+    width: 8%;
+    background-color: rgba(34,34,34,0.8);
+  }
 }
 
 .aside__active {
@@ -104,6 +123,9 @@
         display: block;
       }
     }
+  }
+  .aside-home{
+    display: block;
   }
 }
 
