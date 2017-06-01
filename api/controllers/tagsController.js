@@ -41,6 +41,7 @@ exports.updateTag = (req,res) =>{
       res.status(404).send(err);
     }else{
       tag.name = req.body.name;
+      tag.slug = req.body.slug;
       tag.save();
       res.json(tag);
     }

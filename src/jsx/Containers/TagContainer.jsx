@@ -11,6 +11,7 @@ class TagContainer extends React.Component{
     }
     this.deleteTag = this.deleteTag.bind(this);
     this.updateTag = this.updateTag.bind(this);
+    this.createSlug = this.createSlug.bind(this);
   }//constructor
 
 
@@ -29,12 +30,14 @@ class TagContainer extends React.Component{
       .catch((error) => console.error('axios error', error))
     }
 
+  createSlug(name){
+    let slug = name.toLowerCase().replace(/[^a-z0-9 -]/g, '').replace(/\s+/g, '-')
+    return slug;
+  }
+
   addTag(event){
     if(event.keyCode == 13){
-
-      let slug = event.target.value.toLowerCase().replace(/[^a-z0-9 -]/g, '').replace(/\s+/g, '-')
-
-      axios.post('http://localhost:3000/api/tags',{name: event.target.value, slug: slug})
+      axios.post('http://localhost:3000/api/tags',{name: event.target.value, slug: this.createSlug(event.target.value)})
       .then(function(response){
        this.setState({tags: this.state.tags.concat(response.data)});
     }.bind(this))
@@ -65,7 +68,7 @@ class TagContainer extends React.Component{
   updateTag(idNote,  name, event){
     if(event.keyCode == 13){
       event.preventDefault();
-       axios.put(`http://localhost:3000/api/tags/${idNote}`, {name: name, color: "blue"})
+       axios.put(`http://localhost:3000/api/tags/${idNote}`, {name: name, color: "blue", slug: this.createSlug(name)})
        .then(function(response){
          const newState = this.state.tags.filter(tag => tag._id != response.data._id) //delete from state the tag
          this.setState({

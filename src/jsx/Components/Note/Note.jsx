@@ -10,7 +10,7 @@ class Note extends React.Component{
   }
  
   callBackColor(color,event){
-     this.props.changeColor(this.props._id,this.refs.title.value, this.refs.description.value,this.props.notebook,[],color,this.props.favorite,event);
+     this.props.changeColor(this.props._id,this.refs.title.value, this.refs.description.value,this.props.notebook,this.props.tags,color,this.props.favorite,event);
   }
 
   callBackFavorite(event){
@@ -20,16 +20,19 @@ class Note extends React.Component{
       this.props.favNote(this.props._id,this.refs.title.value, this.refs.description.value,this.props.notebook,[],this.props.color,false,event);
     }
   }
-
+  callBackOpenNote(event){
+    this.props.openNote(this.props.tags, event);
+  }
   handlerSelected(event){
-    this.props.setTags(event.target.options);
+    this.props.setTags(event.target.options, event);
   }
 
+
   render(){ 
-    const {title,description,noteTags, isNewNote, color, favorite} = this.props;
+    const {title,description,tags, isNewNote, color, favorite} = this.props;
     return(
       <div className='col-xs-12 col-sm-6 col-md-3'>
-        <div className={isNewNote ? 'note-block note-modal--active': 'note-block'} onClick={this.props.openNote}>
+        <div className={isNewNote ? 'note-block note-modal--active': 'note-block'} onClick={this.callBackOpenNote.bind(this)}>
           <div className={color ==='red'? 'note red-note note-modal--content' : color==='blue'?'note blue-note note-modal--content': 'note note-modal--content' }>
             <span className='close'>X</span>
             <textarea className='note--title' maxLength='15' ref='title' defaultValue={title}/>
@@ -53,9 +56,9 @@ class Note extends React.Component{
                 
               </div>
               <div className={this.props.isTagOn? 'tag-selector tag--selector-active': 'tag-selector'}>
-                <select className='form-control' multiple defaultValue={this.props.tags} onChange={this.handlerSelected.bind(this)}>
-                  {this.props.tags.map((option)=> 
-                    <option key={option._id} value={option._id}>{option.name}</option>
+                <select className='form-control' multiple defaultValue={this.props.allTags} onChange={this.handlerSelected.bind(this)}>
+                  {this.props.allTags.map((option)=> 
+                    <option key={option._id} value={option._id} selected={tags.includes(option._id)}>{option.name}</option>
                   )}
                 </select>
               </div>
