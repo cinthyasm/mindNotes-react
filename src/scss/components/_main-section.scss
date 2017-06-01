@@ -91,19 +91,30 @@
     .footer--btn-save{
       display: none;
     }
-    .tags{
-      position: absolute;
-      top: 0;
-      left: 10px;
-      width: 100%;
-      max-width: 60%;
-    }
-
   }//enf .footer
   .close {
     display: none;
   }
+  .tag-container{
+    position: absolute;
+    top: 30%;
+    right: 5px;
+    max-height: 95px;
+    overflow: hidden;
+    .tags{
+      background-color: black;
+      color:white;
+      font-size: 0.7rem;
+      padding: 2px;
+      text-align: right;
+      margin-bottom: 1.5px;
+    }
+  }
 }
+
+
+
+
 
 .note-modal--active{
   background-color: rgba(229, 229, 229, .6);

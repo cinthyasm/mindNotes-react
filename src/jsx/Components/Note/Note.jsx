@@ -52,9 +52,6 @@ class Note extends React.Component{
                 <div className='red'  onClick={this.callBackColor.bind(this,'red')}></div>
                 <div className='default' onClick={this.callBackColor.bind(this,'default')}></div>
               </div>
-              <div className="tags">
-                
-              </div>
               <div className={this.props.isTagOn? 'tag-selector tag--selector-active': 'tag-selector'}>
                 <select className='form-control' multiple defaultValue={this.props.allTags} onChange={this.handlerSelected.bind(this)}>
                   {this.props.allTags.map((option)=> 
@@ -62,6 +59,11 @@ class Note extends React.Component{
                   )}
                 </select>
               </div>
+            </div>
+            <div className="tag-container">
+              {this.props.allTags.map((option)=> 
+                  tags.includes(option._id) ? <div key={option.id} className='tags'>{option.name}</div> : null
+                )}
             </div>
           </div>
         </div>
