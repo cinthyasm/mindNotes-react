@@ -6,17 +6,18 @@ class Note extends React.Component{
   }
 
   callbackClose(event){
-    this.props.closeNote(this.props._id,this.refs.title.value,this.refs.description.value,"",this.props.notebook, event);
+    this.props.closeNote(this.props._id,this.refs.title.value,this.refs.description.value,color,this.props.notebook,this.props.favorite, event);
   }
+ 
   callBackColor(color,event){
-     this.props.changeColor(this.props._id,this.refs.title.value, this.refs.description.value,this.props.notebook,color,event);
+     this.props.changeColor(this.props._id,this.refs.title.value, this.refs.description.value,this.props.notebook,[],color,this.props.favorite,event);
   }
 
   callBackFavorite(event){
     if(this.props.favorite == false){
-      this.props.favNote(this.props._id,this.refs.title.value, this.refs.description.value,this.props.notebook,[],"",true,event);
+      this.props.favNote(this.props._id,this.refs.title.value, this.refs.description.value,this.props.notebook,[],this.props.color,true,event);
     }else{
-      this.props.favNote(this.props._id,this.refs.title.value, this.refs.description.value,this.props.notebook,[],"",false,event);
+      this.props.favNote(this.props._id,this.refs.title.value, this.refs.description.value,this.props.notebook,[],this.props.color,false,event);
     }
   }
 

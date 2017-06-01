@@ -10,7 +10,9 @@ class NoteContainer extends React.Component {
       notes : [],
       currentTags: "", //tags selected from UI
       tags: [], //all tags
-      isTagOn: false
+      isTagOn: false,
+      favnotes: []
+
     }
     //functions' binding
     this.getDataNotes = this.getDataNotes.bind(this);
@@ -60,7 +62,7 @@ class NoteContainer extends React.Component {
   filterNotesByFavorites(){
     let notesByFavorites = this.state.notes.slice()
     notesByFavorites = notesByFavorites.filter(function( note ) { return note.favorite == true})
-    this.setState({notes: notesByFavorites})
+    this.setState({favnotes: notesByFavorites})
   }
 
   getDataNotes(){
@@ -78,9 +80,9 @@ class NoteContainer extends React.Component {
     .catch((error) => console.error('axios error', error))
   }//getDataNotes()
 
-  handlerNoteColor(idNote,title,description,notebook,tags,color,event){
+  handlerNoteColor(idNote,title,description,notebook,tags,color,favorite,event){
     event.stopPropagation();
-    axios.put(`http://localhost:3000/api/notes/${idNote}`, {title: title, description: description, color:color, notebook:notebook, tags:this.state.currentTags})
+    axios.put(`http://localhost:3000/api/notes/${idNote}`, {title: title, description: description, color:color, notebook:notebook, tags:this.state.currentTags,favorite:favorite})
     .then(function(response){
       const newState = this.state.notes.map((note)=> this.functionChange(note,response)) //delete from state the tag
       this.setState({
@@ -119,12 +121,12 @@ class NoteContainer extends React.Component {
     }.bind(this));
   }//deleteNode()
 
-  closeNote(idNote,title,description,color,notebook,event){
+  closeNote(idNote,title,description,color,notebook,favorite,event){
     event.stopPropagation()
     event.currentTarget.parentNode.parentNode.parentNode.className = 'note-block'
     this.setState({activeNote: !this.state.activeNote})
     axios.put(`http://localhost:3000/api/notes/${idNote}`,
-          {title: title, description: description, color:color, notebook:notebook, tags:this.state.currentTags})
+          {title: title, description: description, color:color, notebook:notebook, tags:this.state.currentTags, favorite: favorite})
     .then(function(response){
     });
     this.setState({isTagOn: false})
@@ -136,8 +138,7 @@ class NoteContainer extends React.Component {
 
   addNote(event){
     let notebook = this.props.location.query.id
-    console.log()
-    axios.post('http://localhost:3000/api/notes', {title: "New Note", description: "", color:"", notebook:notebook, tags:[] })
+    axios.post('http://localhost:3000/api/notes', {title: "New Note", description: "", color:"", notebook:notebook, tags:[], favorite: false })
       .then(function(response){
        const newNote = Object.assign(response.data , {isNewNote: true} )
        this.setState({notes: this.state.notes.concat(newNote)})
@@ -146,12 +147,16 @@ class NoteContainer extends React.Component {
 
   favNote(idNote,title,description,notebook,tags,color,favorite,event){
     event.stopPropagation()
-    console.log(favorite)
     axios.put(`http://localhost:3000/api/notes/${idNote}`, {title: title, description: description, color:color, notebook:notebook, tags:tags,favorite:favorite})
     .then(function(response){
       const newState = this.state.notes.map((note)=> this.functionUpdateFav(note,response)) //delete from state the tag
       this.setState({
         notes: newState
+      });
+
+      const notesFavUpdated = this.state.notes.filter(function( note ) { return note.favorite == true})
+      this.setState({
+        favnotes: notesFavUpdated
       });
     }.bind(this));
   }
@@ -168,12 +173,13 @@ class NoteContainer extends React.Component {
   }
 
   render(){
+
     return(
     <div> 
       {this.props.location.query.type == 'notebooks' ? (
         <div onClick={this.addNote} className='fa-add'><i className='fa fa-plus' aria-hidden='true'></i></div>
       ) : ( null )}
-      {this.state.notes.filter((note) => 
+      {this.props.location.query.type == 'notebooks' || this.props.location.query.type == 'tags' ? this.state.notes.filter((note) => 
         `${note.title} ${note.description}`.toUpperCase().indexOf(this.props.searchTerm.toUpperCase())>= 0)
         .map((note) => {
           return ( 
@@ -192,6 +198,23 @@ class NoteContainer extends React.Component {
             )//return
           }//map
         )//map
+        : 
+        this.state.favnotes.filter((note) => 
+        `${note.title} ${note.description}`.toUpperCase().indexOf(this.props.searchTerm.toUpperCase())>= 0)
+        .map((note) => {
+          return ( 
+            <Note
+              key={note._id} {...note} 
+              deleteNote={this.deleteNote} 
+              openNote={this.openNote} 
+              closeNote={this.closeNote}
+              changeColor={this.handlerNoteColor}
+              favNote={this.favNote}
+            />
+            )//return
+          }//map
+        )//map
+
       }
     </div>
     )//return
