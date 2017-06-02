@@ -107,9 +107,7 @@ class NoteContainer extends React.Component {
         value.push(options[i].value);
       }
     }  
-    console.log(value);
     this.state.currentTags = value;
-    console.log(this.state.currentTags);
   }
 
   /*****NOTE's CRUDS*****/

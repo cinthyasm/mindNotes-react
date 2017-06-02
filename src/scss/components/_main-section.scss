@@ -98,23 +98,20 @@
   .tag-container{
     position: absolute;
     top: 30%;
-    right: 5px;
+    right: 3px;
     max-height: 95px;
     overflow: hidden;
     .tags{
-      background-color: black;
+      background-color: #7c6969;
+      border-radius: 5px;
       color:white;
       font-size: 0.7rem;
-      padding: 2px;
-      text-align: right;
       margin-bottom: 1.5px;
+      padding: 1px 1px 0 1px;
+      text-align: right;
     }
   }
 }
-
-
-
-
 
 .note-modal--active{
   background-color: rgba(229, 229, 229, .6);
@@ -130,6 +127,9 @@
     .footer .footer--hover {
       display: flex;
     }
+  }
+  textarea{
+    color: black;
   }
   .note--description{
     height: 50vh;
@@ -191,6 +191,9 @@
       left: 5px;
       bottom: 25px;
     }
+  }
+  .tag-container{
+     max-height: 45%;
   }
 }
 
